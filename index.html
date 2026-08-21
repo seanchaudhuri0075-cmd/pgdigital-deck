@@ -1,0 +1,2942 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d0d0d">
+<title>P&amp;G Digital First — Creative Deck Q1 2025–Q3 2026</title>
+<meta name="description" content="Global Image Factory creative deck for P&amp;G — omnichannel Meta ads, 3D/CGI and GenAI social ads, CGI scenes and environments, display banners and sponsored brand videos.">
+<style>
+/* ============================================================
+   P&G Digital First — responsive deck
+   Mobile: reflowed screens. Desktop: faithful 16:9 canvas.
+   ============================================================ */
+
+:root{
+  /* Original deck sets its display face in Neue Haas Grotesk Display 55 Roman.
+     No free/redistributable equivalent exists, so we ride the closest
+     ubiquitous relative (Helvetica Neue on Apple, Helvetica/Arial elsewhere). */
+  --sans: "Neue Haas Grotesk Display Pro","Neue Haas Grotesk Display","Helvetica Neue",
+          Helvetica, Inter, "Segoe UI", Arial, sans-serif;
+  --mono: ui-monospace,"Roboto Mono","SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+
+  --pad: clamp(18px, 5.6vw, 30px);
+  --gap: clamp(14px, 3.0vh, 26px);
+  --chrome-h: 44px;
+  --foot-h: 34px;
+  --ink: #111;
+  --ink-dim: rgba(17,17,17,.52);
+  --rule: rgba(17,17,17,.16);
+  --brand: #00b0f0;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);
+  color:var(--ink);
+  background:#0d0d0d;
+  overscroll-behavior-y:none;
+}
+img,video{display:block;max-width:100%}
+
+/* ---------- deck shell ---------- */
+.deck{
+  height:100svh;
+  overflow-y:auto;
+  overflow-x:hidden;
+  scroll-snap-type:y proximity;
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+}
+.slide{
+  position:relative;
+  height:100svh;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+  background:var(--bg,#fff);
+  display:flex;
+  flex-direction:column;
+  padding-top:env(safe-area-inset-top);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.slide.on-dark{--ink:#fff;--ink-dim:rgba(255,255,255,.62);--rule:rgba(255,255,255,.28)}
+
+/* ---------- per-slide chrome ---------- */
+.chrome{
+  flex:0 0 auto;
+  height:var(--chrome-h);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;
+  padding:0 var(--pad);
+}
+.chrome .eyebrow{
+  font-family:var(--mono);
+  font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-dim);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.chrome .mark{height:15px;width:auto;flex:0 0 auto;opacity:.78}
+.on-dark .chrome .mark{filter:brightness(0) invert(1);opacity:.92}
+
+.foot{
+  flex:0 0 auto;height:var(--foot-h);
+  display:flex;align-items:center;gap:10px;
+  padding:0 var(--pad) 6px;
+}
+.foot .bar{flex:1;height:1px;background:var(--rule);position:relative}
+.foot .bar i{position:absolute;inset:0 auto 0 0;background:var(--ink);opacity:.55}
+.foot .num{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--ink-dim)}
+
+/* ---------- stage: the reflow area ---------- */
+.stage{
+  flex:1 1 auto;
+  min-height:0;
+  display:flex;flex-direction:column;
+  gap:var(--gap);
+  padding:0 var(--pad) 2px;
+}
+.slide.tall{height:auto;min-height:100svh;scroll-snap-stop:normal}
+.slide.tall .stage{flex:0 0 auto;padding-bottom:26px}
+
+/* Copy crops are lifted straight off the 4000px render and sit directly on the
+   slide colour — no card, no border, no shadow. They must read as set text. */
+.copy{
+  width:100%;height:auto;
+  flex:0 1 auto;min-height:0;
+  object-fit:contain;object-position:left top;
+}
+/* Art clusters carry the same background in their own gutters, so butting them
+   flush to the copy's left edge makes the pair read as one composition. */
+.art{
+  width:100%;height:auto;
+  flex:0 0 auto;
+  object-fit:contain;object-position:left center;
+}
+.slide.tall .art{flex:0 0 auto}
+.cap{width:100%;height:auto;flex:0 0 auto;object-fit:contain;object-position:left top}
+
+/* let the art take the slack on caption+art slides */
+.k-capart .art,.k-featured .art{flex:1 1 auto;min-height:0;object-position:center}
+.k-divider .art{flex:1 1 auto;min-height:0;object-position:left center}
+.k-divider .copy{flex:0 1 auto;min-height:0}
+
+/* Wide clusters would shrink to unreadable thumbnails if fitted to 390px, so
+   they run full-height and pan sideways instead. */
+.artscroll{
+  flex:1 1 auto;min-height:0;
+  display:flex;align-items:center;
+  overflow-x:auto;overflow-y:hidden;
+  overscroll-behavior-x:contain;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;
+  scroll-snap-type:x proximity;
+  margin:0 calc(var(--pad) * -1);padding:0 var(--pad);
+  -webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 26px),transparent 100%);
+          mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 26px),transparent 100%);
+}
+.artscroll::-webkit-scrollbar{display:none}
+.artscroll img{height:100%;width:auto;max-width:none;flex:0 0 auto;scroll-snap-align:start}
+.panhint{
+  flex:0 0 auto;display:flex;align-items:center;gap:6px;
+  font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-dim);padding-top:2px;
+}
+
+/* ---------- video host ----------
+   One <video> per clip serves both breakpoints. Mobile lays the cells out as a
+   grid and honours --ar; desktop turns the host into the 16:9 canvas and pins
+   each cell to the --x/--y/--w/--h it occupies in the source slide. */
+.vhost{
+  flex:1 1 auto;min-height:0;
+  display:grid;
+  grid-template-columns:repeat(var(--cols,2),minmax(0,1fr));
+  gap:8px;
+  align-content:center;
+}
+.slide.tall .vhost{flex:0 0 auto;align-content:start}
+.vhost video{
+  width:100%;height:100%;
+  object-fit:cover;
+  background:rgba(0,0,0,.06);
+  border-radius:3px;
+}
+.vcell{position:relative;min-width:0;aspect-ratio:var(--ar,.5625)}
+.vcell.wide{grid-column:span 2}
+
+/* ---------- live-text slides ---------- */
+.k-cover .stage{justify-content:center;align-items:flex-start;gap:10px}
+.cover-title{
+  font-size:clamp(30px,8.4vw,52px);
+  font-weight:400;letter-spacing:-.012em;line-height:1.04;margin:0;
+}
+.cover-sub{
+  font-size:clamp(15px,4.2vw,26px);
+  font-weight:400;color:var(--ink-dim);letter-spacing:.005em;margin:0;
+}
+
+.closer-h{
+  font-size:clamp(22px,6.4vw,34px);
+  font-weight:400;line-height:1.12;letter-spacing:-.008em;
+  margin:0 0 clamp(18px,4vh,30px);
+  text-wrap:balance;
+}
+.turnaround{list-style:none;margin:0;padding:0;display:grid;gap:clamp(12px,2.4vh,20px)}
+.turnaround li{display:grid;gap:3px;padding-bottom:clamp(10px,2vh,16px);border-bottom:1px solid var(--rule)}
+.turnaround dt,.ta-k{font-size:clamp(13px,3.6vw,16px);font-weight:400;color:var(--ink)}
+.ta-v{font-size:clamp(13px,3.6vw,16px);color:var(--ink)}
+.ta-v b{font-weight:600}
+.ta-v span{opacity:.8}
+.footnote{
+  margin:clamp(16px,3vh,26px) 0 0;
+  font-size:clamp(9.5px,2.6vw,11px);line-height:1.45;color:var(--ink-dim);
+}
+.names{
+  columns:2;column-gap:clamp(14px,5vw,34px);
+  margin:0;padding:0;list-style:none;
+  font-size:clamp(12px,3.4vw,15px);line-height:1.62;
+}
+.names li{break-inside:avoid}
+
+.k-closer .stage{justify-content:center}
+.contact{display:grid;gap:clamp(20px,4.5vh,34px);margin-top:clamp(14px,3vh,24px)}
+.contact .blk{display:grid;gap:4px}
+.contact .lab{
+  font-family:var(--mono);
+  font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--ink-dim);margin-bottom:2px;
+}
+.contact a{color:inherit;text-decoration:none;font-size:clamp(14px,4.1vw,18px);word-break:break-word}
+.contact a:hover{text-decoration:underline}
+.contact .tel{font-size:clamp(14px,4.1vw,18px);color:var(--ink)}
+.closer-mark{height:clamp(34px,9vw,48px);width:auto;margin-bottom:clamp(20px,5vh,36px);filter:brightness(0) invert(1)}
+
+/* ---------- info slides (3, 4) ---------- */
+.parts{display:grid;gap:var(--gap)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,3.4vw,22px)}
+.stats img{width:100%;height:auto}
+.steps{display:grid;gap:clamp(18px,3.6vh,26px)}
+.step{display:grid;grid-template-columns:clamp(58px,17vw,76px) 1fr;gap:clamp(12px,3.6vw,18px);align-items:center}
+.step img.circ{width:100%;height:auto}
+.step img.txt{width:100%;height:auto}
+.parts img.block{width:100%;height:auto}
+
+/* ---------- hero (slide 2) ---------- */
+.k-hero{--bg:#000;color:#fff;padding:0}
+.k-hero .hero{position:absolute;inset:0;flex:none}
+.hero{position:relative;flex:1 1 auto;min-height:0;overflow:hidden}
+/* Portrait and wide crops both sit in the flow as plain <img src>; the
+   m-only / d-only switch shows exactly one at each breakpoint. */
+.hero img.shot{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:50% 42%;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,0) 26%),
+    linear-gradient(0deg,rgba(0,0,0,.52) 0%,rgba(0,0,0,0) 42%);
+  pointer-events:none;
+}
+.hero .lockup{
+  position:absolute;inset:auto var(--pad) 0 var(--pad);
+  z-index:2;
+  padding-bottom:clamp(20px,4.4vh,34px);
+  display:grid;gap:0;
+}
+.hero .h-eyebrow{
+  position:absolute;top:clamp(14px,2.6vh,22px);left:var(--pad);right:var(--pad);
+  z-index:2;display:flex;justify-content:space-between;gap:10px;
+  font-family:var(--mono);font-size:clamp(8.5px,2.6vw,11px);
+  letter-spacing:.13em;color:rgba(255,255,255,.92);
+}
+.hero h1{
+  font-family:var(--sans);
+  font-weight:400;
+  font-size:clamp(38px,13.4vw,86px);
+  line-height:.96;letter-spacing:-.022em;
+  margin:0 0 .28em;
+  color:#fff;
+  text-shadow:0 1px 26px rgba(0,0,0,.34);
+}
+.hero .h-sub{
+  font-size:clamp(11.5px,3.4vw,15px);
+  line-height:1.34;color:rgba(255,255,255,.95);
+  margin:0 0 clamp(14px,2.8vh,20px);max-width:26ch;
+  text-shadow:0 1px 16px rgba(0,0,0,.4);
+}
+.hero .h-rule{height:1px;background:rgba(255,255,255,.55);margin:0 0 clamp(14px,2.6vh,20px)}
+.hero .h-logos{width:100%;height:auto;opacity:.97}
+
+/* ============================================================
+   DESKTOP — faithful 16:9 canvas
+   ============================================================ */
+@media (min-width:900px){
+  :root{--pad:clamp(28px,3.2vw,56px);--chrome-h:52px;--foot-h:42px}
+  body{background:#101010}
+  .deck{scroll-snap-type:y proximity}
+  .slide{min-height:100svh;justify-content:center;padding:0}
+  .slide .chrome,.slide .foot{position:absolute;left:0;right:0;z-index:4}
+  .slide .chrome{top:0}
+  .slide .foot{bottom:0}
+
+  .stage{padding:0;justify-content:center;align-items:center}
+  .canvas{
+    position:relative;width:min(100vw,calc((100svh - 0px) * 16 / 9));
+    aspect-ratio:16/9;background:var(--bg,#fff);
+    overflow:hidden;
+  }
+  .canvas>img.plate{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+  /* video slides: the same host, now the 16:9 canvas with the clips pinned
+     over the plate at their source coordinates */
+  .vhost{
+    display:block;position:relative;
+    flex:0 0 auto;gap:0;
+    width:min(100vw,calc((100svh - 0px) * 16 / 9));
+    aspect-ratio:16/9;background:var(--bg,#fff);
+    overflow:hidden;
+  }
+  .vhost>img.plate{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .vhost .vcell{
+    position:absolute;aspect-ratio:auto;min-width:0;
+    left:var(--x);top:var(--y);width:var(--w);height:var(--h);
+  }
+  .vhost .vcell.wide{grid-column:auto}
+  .vhost video{border-radius:0;background:#0002}
+
+  /* mobile-only pieces stand down */
+  .m-only{display:none !important}
+  .slide.tall{height:100svh;min-height:100svh}
+
+  /* Live-text slides are re-set rather than imaged, so they scale off the
+     canvas itself. Sizes below are the source PPTX point sizes expressed as a
+     share of the 7.5in slide height (40pt / 540pt = 7.41cqh, and so on). */
+  .canvas{container-type:size}
+  .canvas.live{display:flex;flex-direction:column;justify-content:center;padding:0 5%}
+  .canvas.live .inner{width:100%}
+
+  .k-cover .canvas.live{padding-left:50%;padding-right:5%}
+  .cover-title{font-size:8.15cqh;letter-spacing:-.005em}
+  .cover-sub{font-size:5.19cqh;margin-top:.5cqh}
+
+  .canvas.live .closer-h{font-size:7.41cqh;line-height:1.1;margin:0 0 5cqh;max-width:78%}
+  .slide[data-n="49"] .canvas.live .closer-h{font-size:6.67cqh;max-width:82%}
+  .slide[data-n="48"] .canvas.live,
+  .slide[data-n="49"] .canvas.live{justify-content:flex-start;padding-top:7cqh}
+
+  .canvas.live .turnaround{gap:2.4cqh;max-width:92%}
+  .canvas.live .turnaround li{
+    grid-template-columns:1.02fr 1fr;gap:3cqh;align-items:baseline;
+    padding-bottom:1.7cqh;
+  }
+  .canvas.live .ta-k,.canvas.live .ta-v{font-size:2.96cqh}
+  .canvas.live .footnote{font-size:1.9cqh;margin-top:4cqh;max-width:80%;line-height:1.4}
+
+  .canvas.live .names{columns:2;column-gap:6cqh;font-size:2.7cqh;line-height:1.74;max-width:52%}
+
+  .slide[data-n="50"] .canvas.live{
+    display:grid;grid-template-columns:1fr 1fr;align-items:center;
+    gap:4cqh;padding:0 5%;
+  }
+  .slide[data-n="50"] .canvas.live .inner{display:contents}
+  .canvas.live .closer-mark{height:11cqh;margin:0;justify-self:end;align-self:center}
+  .canvas.live .contact{gap:5cqh;margin:0;align-self:center}
+  .canvas.live .contact a,.canvas.live .contact .tel{font-size:2.9cqh}
+  .canvas.live .contact .lab{font-size:1.85cqh;letter-spacing:.14em;margin-bottom:.8cqh}
+
+  /* match the source lockup: logo strip 8.95%-91.97%, subline right-aligned
+     under the headline, hairline rule inset inside both. */
+  .hero h1{font-size:9.9vw;letter-spacing:-.029em;margin-bottom:.14em}
+  .hero .h-sub{font-size:1.16vw;max-width:none;width:max-content;margin-left:auto;
+               margin-bottom:1.75vw;text-shadow:0 1px 14px rgba(0,0,0,.42)}
+  .hero .h-sub span{display:block}
+  .hero .h-rule{margin:0 5.6% 1.9vw}
+  .hero .lockup{inset:auto 8.03% 7.24% 8.95%}
+  .hero .h-eyebrow{font-size:.86vw;top:3.6%;left:2.4%;right:2.4%}
+}
+@media (max-width:899px){
+  .d-only{display:none !important}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .deck{scroll-behavior:auto}
+}
+
+/* ---------- editor metadata ----------
+   The slide-name list in index.html is data for the deck editor, not part of
+   the deck. It carries the [hidden] attribute; this backs that up so the rail
+   can never affect layout. */
+.rail[hidden]{display:none !important}
+
+</style>
+</head>
+<body>
+
+<!-- Slide names for the editor's slide list. Inert in the browser (hidden);
+     each .rail-item carries a .rail-label and points at its section id. -->
+<nav class="rail" hidden="" aria-hidden="true">
+<ol class="rail-list">
+<li class="rail-item" data-target="slide-0"><span class="rail-num">01</span><span class="rail-label">Creative Deck</span></li>
+<li class="rail-item" data-target="slide-1"><span class="rail-num">02</span><span class="rail-label">Brands Showcase</span></li>
+<li class="rail-item" data-target="slide-2"><span class="rail-num">03</span><span class="rail-label">Projects Summary</span></li>
+<li class="rail-item" data-target="slide-3"><span class="rail-num">04</span><span class="rail-label">Approach</span></li>
+<li class="rail-item" data-target="slide-4"><span class="rail-num">05</span><span class="rail-label">01 / Omnichannel Meta Ads</span></li>
+<li class="rail-item" data-target="slide-5"><span class="rail-num">06</span><span class="rail-label">Secret Clinical + Whole Body Labels Refresh Launch</span></li>
+<li class="rail-item" data-target="slide-6"><span class="rail-num">07</span><span class="rail-label">Define Strategy</span></li>
+<li class="rail-item" data-target="slide-7"><span class="rail-num">08</span><span class="rail-label">Design and Deliver</span></li>
+<li class="rail-item" data-target="slide-8"><span class="rail-num">09</span><span class="rail-label">Design and Deliver</span></li>
+<li class="rail-item" data-target="slide-9"><span class="rail-num">10</span><span class="rail-label">02 / 3D · CGI &amp; GenAI Social Ads</span></li>
+<li class="rail-item" data-target="slide-10"><span class="rail-num">11</span><span class="rail-label">Secret Variety Packs Launch at Sam's Club</span></li>
+<li class="rail-item" data-target="slide-11"><span class="rail-num">12</span><span class="rail-label">Define Strategy</span></li>
+<li class="rail-item" data-target="slide-12"><span class="rail-num">13</span><span class="rail-label">Design and Deliver</span></li>
+<li class="rail-item" data-target="slide-13"><span class="rail-num">14</span><span class="rail-label">Venus x WNBA Partnership</span></li>
+<li class="rail-item" data-target="slide-14"><span class="rail-num">15</span><span class="rail-label">Define Strategy</span></li>
+<li class="rail-item" data-target="slide-15"><span class="rail-num">16</span><span class="rail-label">Design and Deliver</span></li>
+<li class="rail-item" data-target="slide-16"><span class="rail-num">17</span><span class="rail-label">Design and Deliver</span></li>
+<li class="rail-item" data-target="slide-17"><span class="rail-num">18</span><span class="rail-label">Design and Deliver</span></li>
+<li class="rail-item" data-target="slide-18"><span class="rail-num">19</span><span class="rail-label">Secret @Coachella26</span></li>
+<li class="rail-item" data-target="slide-19"><span class="rail-num">20</span><span class="rail-label">Define Strategy</span></li>
+<li class="rail-item" data-target="slide-20"><span class="rail-num">21</span><span class="rail-label">Design and Deliver</span></li>
+<li class="rail-item" data-target="slide-21"><span class="rail-num">22</span><span class="rail-label">Other Featured Projects</span></li>
+<li class="rail-item" data-target="slide-22"><span class="rail-num">23</span><span class="rail-label">Costco Co-Branding</span></li>
+<li class="rail-item" data-target="slide-23"><span class="rail-num">24</span><span class="rail-label">Secret vs Competitor Products</span></li>
+<li class="rail-item" data-target="slide-24"><span class="rail-num">25</span><span class="rail-label">Secret vs Competitor Products</span></li>
+<li class="rail-item" data-target="slide-25"><span class="rail-num">26</span><span class="rail-label">Secret AMJ</span></li>
+<li class="rail-item" data-target="slide-26"><span class="rail-num">27</span><span class="rail-label">03 / CGI · AI Scenes + Environments</span></li>
+<li class="rail-item" data-target="slide-27"><span class="rail-num">28</span><span class="rail-label">Venus Shave Assets Refresh</span></li>
+<li class="rail-item" data-target="slide-28"><span class="rail-num">29</span><span class="rail-label">Define Strategy</span></li>
+<li class="rail-item" data-target="slide-29"><span class="rail-num">30</span><span class="rail-label">Design and Deliver</span></li>
+<li class="rail-item" data-target="slide-30"><span class="rail-num">31</span><span class="rail-label">Design and Deliver</span></li>
+<li class="rail-item" data-target="slide-31"><span class="rail-num">32</span><span class="rail-label">Other Featured Projects</span></li>
+<li class="rail-item" data-target="slide-32"><span class="rail-num">33</span><span class="rail-label">Olay Assets</span></li>
+<li class="rail-item" data-target="slide-33"><span class="rail-num">34</span><span class="rail-label">Olay Body Wash</span></li>
+<li class="rail-item" data-target="slide-34"><span class="rail-num">35</span><span class="rail-label">Old Spice Men's Cologne</span></li>
+<li class="rail-item" data-target="slide-35"><span class="rail-num">36</span><span class="rail-label">Ivory Bodywash Composites</span></li>
+<li class="rail-item" data-target="slide-36"><span class="rail-num">37</span><span class="rail-label">Ivory Bodywash Banners</span></li>
+<li class="rail-item" data-target="slide-37"><span class="rail-num">38</span><span class="rail-label">04 / Display Banner Ads</span></li>
+<li class="rail-item" data-target="slide-38"><span class="rail-num">39</span><span class="rail-label">Display Banner Ads</span></li>
+<li class="rail-item" data-target="slide-39"><span class="rail-num">40</span><span class="rail-label">05 / Sponsored Brand Videos</span></li>
+<li class="rail-item" data-target="slide-40"><span class="rail-num">41</span><span class="rail-label">Always Period Underwear Product Video</span></li>
+<li class="rail-item" data-target="slide-41"><span class="rail-num">42</span><span class="rail-label">Execution Strategy</span></li>
+<li class="rail-item" data-target="slide-42"><span class="rail-num">43</span><span class="rail-label">Design and Deliver</span></li>
+<li class="rail-item" data-target="slide-43"><span class="rail-num">44</span><span class="rail-label">Other Featured Projects</span></li>
+<li class="rail-item" data-target="slide-44"><span class="rail-num">45</span><span class="rail-label">Always</span></li>
+<li class="rail-item" data-target="slide-45"><span class="rail-num">46</span><span class="rail-label">Always</span></li>
+<li class="rail-item" data-target="slide-46"><span class="rail-num">47</span><span class="rail-label">Always</span></li>
+<li class="rail-item" data-target="slide-47"><span class="rail-num">48</span><span class="rail-label">Brand Assets Turnaround Times</span></li>
+<li class="rail-item" data-target="slide-48"><span class="rail-num">49</span><span class="rail-label">Thank You</span></li>
+<li class="rail-item" data-target="slide-49"><span class="rail-num">50</span><span class="rail-label">Contact</span></li>
+</ol>
+</nav>
+
+<!-- The 50 slides ship as static markup: every section carries class="slide"
+     with a sequential id, and every img/video carries a literal relative src.
+     No srcset and no picture/source anywhere. Each video clip is a single
+     element: the mobile grid and the desktop plate overlay are the same node,
+     switched by CSS, so a clip is never referenced twice.
+     assets/deck.js adopts this markup rather than rebuilding it. -->
+<main class="deck" id="deck">
+<section class="slide k-cover" id="slide-0" data-n="1" data-slide-name="Creative Deck" aria-label="Creative Deck" style="--bg: #f2f2f2;"><div class="chrome"><div class="eyebrow">Digital Creds Presentation</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="inner m-only"><h1 class="cover-title">CREATIVE DECK</h1><p class="cover-sub">Q1 2025 - Q3 2026</p></div><div class="canvas live d-only" style="--bg: #f2f2f2;"><div class="inner"><h1 class="cover-title">CREATIVE DECK</h1><p class="cover-sub">Q1 2025 - Q3 2026</p></div></div></div><div class="foot"><div class="bar"><i style="width: 2%;"></i></div><div class="num">01 / 50</div></div></section>
+
+<section class="slide k-hero on-dark" id="slide-1" data-n="2" data-slide-name="Brands Showcase" aria-label="Brands Showcase" style="--bg: #ffffff;"><div class="hero"><img class="shot m-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-2.jpeg" alt="Three women laughing together" width="1280" height="1600" loading="eager" decoding="async"><img class="shot d-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-3.jpeg" alt="Three women laughing together" width="2400" height="1350" loading="eager" decoding="async"><div class="h-eyebrow"><span>Digital Creds Presentation</span><span>Q1 2025 TO Q3 2026</span></div><div class="lockup"><h1>Brands Showcase</h1><p class="h-sub"><span>COHO Skin, Personal Care and Beauty,</span> <span>Feminine Care, Grooming</span></p><div class="h-rule"></div><img class="h-logos" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-4.png" alt="Secret, Secret Clinical, Secret Whole Body, Always, Gillette, Olay, Ivory, Old Spice" width="1400" height="119" loading="eager" decoding="async"></div></div></section>
+
+<section class="slide k-info tall" id="slide-2" data-n="3" data-slide-name="Projects Summary" aria-label="Projects Summary" style="--bg: #f1efe7;"><div class="chrome"><div class="eyebrow">Digital Creds Presentation</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="parts m-only"><img class="block" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-6.png" alt="Projects Summary" width="1100" height="626" loading="lazy" decoding="async"><div class="stats"><img src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-7.png" alt="" width="560" height="336" loading="lazy" decoding="async"><img src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-8.png" alt="" width="496" height="360" loading="lazy" decoding="async"><img src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-9.png" alt="" width="496" height="360" loading="lazy" decoding="async"><img src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-10.png" alt="" width="480" height="360" loading="lazy" decoding="async"></div><img class="block" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-11.png" alt="" width="1064" height="772" loading="lazy" decoding="async"><img class="block" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-12.png" alt="" width="1000" height="891" loading="lazy" decoding="async"><img class="block" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-13.png" alt="" width="1032" height="891" loading="lazy" decoding="async"></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-14.jpeg" alt="Projects Summary" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 6%;"></i></div><div class="num">03 / 50</div></div></section>
+
+<section class="slide k-info tall" id="slide-3" data-n="4" data-slide-name="Approach" aria-label="Approach" style="--bg: #f2efe8;"><div class="chrome"><div class="eyebrow">Digital Creds Presentation</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="parts m-only"><img class="block" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-16.png" alt="Approach" width="1100" height="258" loading="lazy" decoding="async"><div class="steps"><div class="step"><img class="circ" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-17.jpeg" alt="" width="560" height="479" loading="lazy" decoding="async"><img class="txt" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-18.png" alt="" width="808" height="612" loading="lazy" decoding="async"></div><div class="step"><img class="circ" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-19.jpeg" alt="" width="520" height="489" loading="lazy" decoding="async"><img class="txt" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-20.png" alt="" width="728" height="612" loading="lazy" decoding="async"></div><div class="step"><img class="circ" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-21.jpeg" alt="" width="560" height="507" loading="lazy" decoding="async"><img class="txt" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-22.png" alt="" width="736" height="612" loading="lazy" decoding="async"></div><div class="step"><img class="circ" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-23.jpeg" alt="" width="520" height="484" loading="lazy" decoding="async"><img class="txt" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-24.png" alt="" width="760" height="612" loading="lazy" decoding="async"></div></div></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-25.jpeg" alt="Approach" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 8%;"></i></div><div class="num">04 / 50</div></div></section>
+
+<section class="slide k-divider" id="slide-4" data-n="5" data-slide-name="01 / Omnichannel Meta Ads" aria-label="01 / Omnichannel Meta Ads" style="--bg: #e5f4ef;"><div class="chrome"><div class="eyebrow">01 / Omnichannel Meta Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="copy" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-27.png" alt="01 / Omnichannel Meta Ads" width="660" height="730" loading="lazy" decoding="async"><img class="art" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-28.jpeg" alt="01 / Omnichannel Meta Ads" width="1600" height="865" loading="lazy" decoding="async"></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-29.jpeg" alt="01 / Omnichannel Meta Ads" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 10%;"></i></div><div class="num">05 / 50</div></div></section>
+
+<section class="slide k-twocol" id="slide-5" data-n="6" data-slide-name="Secret Clinical + Whole Body Labels Refresh Launch" aria-label="Secret Clinical + Whole Body Labels Refresh Launch" style="--bg: #e5f4ef;"><div class="chrome"><div class="eyebrow">01 / Omnichannel Meta Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="copy" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-31.png" alt="Secret Clinical + Whole Body Labels Refresh Launch" width="977" height="1734" loading="lazy" decoding="async"><img class="art" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-32.jpeg" alt="Secret Clinical + Whole Body Labels Refresh Launch" width="1600" height="895" loading="lazy" decoding="async"></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-33.jpeg" alt="Secret Clinical + Whole Body Labels Refresh Launch" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 12%;"></i></div><div class="num">06 / 50</div></div></section>
+
+<section class="slide k-twocol" id="slide-6" data-n="7" data-slide-name="Define Strategy" aria-label="Define Strategy" style="--bg: #e5f4ef;"><div class="chrome"><div class="eyebrow">01 / Omnichannel Meta Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="copy" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-35.png" alt="Define Strategy" width="1100" height="1844" loading="lazy" decoding="async"><img class="art" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-36.jpeg" alt="Define Strategy" width="1600" height="1149" loading="lazy" decoding="async"></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-37.jpeg" alt="Define Strategy" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 14%;"></i></div><div class="num">07 / 50</div></div></section>
+
+<section class="slide k-video tall" id="slide-7" data-n="8" data-slide-name="Design and Deliver" aria-label="Design and Deliver" style="--bg: #e5f4ef;"><div class="chrome"><div class="eyebrow">01 / Omnichannel Meta Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><img class="cap m-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-39.png" alt="Design and Deliver" width="539" height="73" loading="lazy" decoding="async"><div class="vhost" style="--cols: 2;"><img class="plate d-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-40.jpeg" alt="Design and Deliver" width="2400" height="1350" loading="lazy" decoding="async"><div class="vcell" style="--ar: 0.5625; --x: 8.422%; --y: 18.638%; --w: 12.199%; --h: 38.554%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-1.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 21.238%; --y: 18.638%; --w: 12.199%; --h: 38.554%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-2.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 34.055%; --y: 18.638%; --w: 12.199%; --h: 38.554%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-3.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 46.872%; --y: 18.638%; --w: 12.279%; --h: 38.809%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-4.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 59.769%; --y: 18.638%; --w: 12.279%; --h: 38.809%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-5.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 72.666%; --y: 18.638%; --w: 12.279%; --h: 38.809%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-6.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 8.422%; --y: 58.671%; --w: 12.279%; --h: 38.809%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-7.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 21.333%; --y: 58.671%; --w: 12.199%; --h: 38.554%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-8.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 34.163%; --y: 58.671%; --w: 12.279%; --h: 38.809%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-9.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 47.073%; --y: 58.671%; --w: 12.279%; --h: 38.809%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-10.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 59.984%; --y: 58.671%; --w: 12.199%; --h: 38.554%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-11.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 72.814%; --y: 58.671%; --w: 12.199%; --h: 38.554%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-12.mp4" loop="" playsinline="" muted="" preload="none"></video></div></div></div><div class="foot"><div class="bar"><i style="width: 16%;"></i></div><div class="num">08 / 50</div></div></section>
+
+<section class="slide k-video" id="slide-8" data-n="9" data-slide-name="Design and Deliver" aria-label="Design and Deliver" style="--bg: #e5f4ef;"><div class="chrome"><div class="eyebrow">01 / Omnichannel Meta Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><img class="cap m-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-42.png" alt="Design and Deliver" width="539" height="73" loading="lazy" decoding="async"><div class="vhost" style="--cols: 2;"><img class="plate d-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-43.jpeg" alt="Design and Deliver" width="2400" height="1350" loading="lazy" decoding="async"><div class="vcell" style="--ar: 0.5625; --x: 4.325%; --y: 22.010%; --w: 21.611%; --h: 68.301%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-13.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 27.003%; --y: 22.010%; --w: 21.611%; --h: 68.301%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-14.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 49.681%; --y: 22.010%; --w: 21.611%; --h: 68.301%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-15.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 72.359%; --y: 22.010%; --w: 21.611%; --h: 68.301%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-16.mp4" loop="" playsinline="" muted="" preload="none"></video></div></div></div><div class="foot"><div class="bar"><i style="width: 18%;"></i></div><div class="num">09 / 50</div></div></section>
+
+<section class="slide k-divider" id="slide-9" data-n="10" data-slide-name="02 / 3D · CGI &amp; GenAI Social Ads" aria-label="02 / 3D · CGI &amp; GenAI Social Ads" style="--bg: #e3ebee;"><div class="chrome"><div class="eyebrow">02 / 3D · CGI &amp; GenAI Social Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="copy" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-45.png" alt="02 / 3D · CGI &amp; GenAI Social Ads" width="750" height="731" loading="lazy" decoding="async"><img class="art" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-46.jpeg" alt="02 / 3D · CGI &amp; GenAI Social Ads" width="1600" height="865" loading="lazy" decoding="async"></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-47.jpeg" alt="02 / 3D · CGI &amp; GenAI Social Ads" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 20%;"></i></div><div class="num">10 / 50</div></div></section>
+
+<section class="slide k-twocol" id="slide-10" data-n="11" data-slide-name="Secret Variety Packs Launch at Sam's Club" aria-label="Secret Variety Packs Launch at Sam's Club" style="--bg: #e3ebee;"><div class="chrome"><div class="eyebrow">02 / 3D · CGI &amp; GenAI Social Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="copy" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-49.png" alt="Secret Variety Packs Launch at Sam's Club" width="930" height="1463" loading="lazy" decoding="async"><img class="art" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-50.jpeg" alt="Secret Variety Packs Launch at Sam's Club" width="1600" height="1047" loading="lazy" decoding="async"></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-51.jpeg" alt="Secret Variety Packs Launch at Sam's Club" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 22%;"></i></div><div class="num">11 / 50</div></div></section>
+
+<section class="slide k-twocol" id="slide-11" data-n="12" data-slide-name="Define Strategy" aria-label="Define Strategy" style="--bg: #e3ebee;"><div class="chrome"><div class="eyebrow">02 / 3D · CGI &amp; GenAI Social Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="copy" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-53.png" alt="Define Strategy" width="1029" height="1920" loading="lazy" decoding="async"><img class="art" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-54.jpeg" alt="Define Strategy" width="1600" height="1203" loading="lazy" decoding="async"></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-55.jpeg" alt="Define Strategy" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 24%;"></i></div><div class="num">12 / 50</div></div></section>
+
+<section class="slide k-video" id="slide-12" data-n="13" data-slide-name="Design and Deliver" aria-label="Design and Deliver" style="--bg: #e3ebee;"><div class="chrome"><div class="eyebrow">02 / 3D · CGI &amp; GenAI Social Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><img class="cap m-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-86.png" alt="Design and Deliver" width="541" height="73" loading="lazy" decoding="async"><div class="vhost" style="--cols: 2;"><img class="plate d-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-58.jpeg" alt="Design and Deliver" width="2400" height="1350" loading="lazy" decoding="async"><div class="vcell" style="--ar: 0.5625; --x: 1.293%; --y: 23.241%; --w: 23.772%; --h: 75.131%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-17.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 25.829%; --y: 23.241%; --w: 23.772%; --h: 75.131%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-18.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 50.364%; --y: 23.241%; --w: 23.772%; --h: 75.131%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-19.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 74.899%; --y: 23.125%; --w: 23.772%; --h: 75.131%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-20.mp4" loop="" playsinline="" muted="" preload="none"></video></div></div></div><div class="foot"><div class="bar"><i style="width: 26%;"></i></div><div class="num">13 / 50</div></div></section>
+
+<section class="slide k-twocol" id="slide-13" data-n="14" data-slide-name="Venus x WNBA Partnership" aria-label="Venus x WNBA Partnership" style="--bg: #e3ebee;"><div class="chrome"><div class="eyebrow">02 / 3D · CGI &amp; GenAI Social Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="copy" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-60.png" alt="Venus x WNBA Partnership" width="992" height="1538" loading="lazy" decoding="async"><img class="art" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-61.jpeg" alt="Venus x WNBA Partnership" width="1600" height="787" loading="lazy" decoding="async"></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-62.jpeg" alt="Venus x WNBA Partnership" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 28%;"></i></div><div class="num">14 / 50</div></div></section>
+
+<section class="slide k-twocol" id="slide-14" data-n="15" data-slide-name="Define Strategy" aria-label="Define Strategy" style="--bg: #e3ebee;"><div class="chrome"><div class="eyebrow">02 / 3D · CGI &amp; GenAI Social Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="copy" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-64.png" alt="Define Strategy" width="844" height="1926" loading="lazy" decoding="async"><img class="art" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-65.jpeg" alt="Define Strategy" width="1600" height="1147" loading="lazy" decoding="async"></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-66.jpeg" alt="Define Strategy" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 30%;"></i></div><div class="num">15 / 50</div></div></section>
+
+<section class="slide k-capart" id="slide-15" data-n="16" data-slide-name="Design and Deliver" aria-label="Design and Deliver" style="--bg: #e3ebee;"><div class="chrome"><div class="eyebrow">02 / 3D · CGI &amp; GenAI Social Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="cap" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-86.png" alt="Design and Deliver" width="541" height="73" loading="lazy" decoding="async"><div class="artscroll"><img src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-69.jpeg" alt="Design and Deliver" width="1600" height="796" loading="lazy" decoding="async"></div><div class="panhint"><span>swipe</span><span>→</span></div></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-70.jpeg" alt="Design and Deliver" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 32%;"></i></div><div class="num">16 / 50</div></div></section>
+
+<section class="slide k-capart" id="slide-16" data-n="17" data-slide-name="Design and Deliver" aria-label="Design and Deliver" style="--bg: #e3ebee;"><div class="chrome"><div class="eyebrow">02 / 3D · CGI &amp; GenAI Social Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><div class="artscroll"><img src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-72.jpeg" alt="Design and Deliver" width="1600" height="837" loading="lazy" decoding="async"></div><div class="panhint"><span>swipe</span><span>→</span></div></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-73.jpeg" alt="Design and Deliver" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 34%;"></i></div><div class="num">17 / 50</div></div></section>
+
+<section class="slide k-capart" id="slide-17" data-n="18" data-slide-name="Design and Deliver" aria-label="Design and Deliver" style="--bg: #e3ebee;"><div class="chrome"><div class="eyebrow">02 / 3D · CGI &amp; GenAI Social Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><div class="artscroll"><img src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-75.jpeg" alt="Design and Deliver" width="1600" height="837" loading="lazy" decoding="async"></div><div class="panhint"><span>swipe</span><span>→</span></div></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-76.jpeg" alt="Design and Deliver" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 36%;"></i></div><div class="num">18 / 50</div></div></section>
+
+<section class="slide k-twocol" id="slide-18" data-n="19" data-slide-name="Secret @Coachella26" aria-label="Secret @Coachella26" style="--bg: #e3ebee;"><div class="chrome"><div class="eyebrow">02 / 3D · CGI &amp; GenAI Social Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="copy" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-78.png" alt="Secret @Coachella26" width="970" height="1613" loading="lazy" decoding="async"><img class="art" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-79.jpeg" alt="Secret @Coachella26" width="1600" height="1166" loading="lazy" decoding="async"></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-80.jpeg" alt="Secret @Coachella26" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 38%;"></i></div><div class="num">19 / 50</div></div></section>
+
+<section class="slide k-twocol" id="slide-19" data-n="20" data-slide-name="Define Strategy" aria-label="Define Strategy" style="--bg: #e3ebee;"><div class="chrome"><div class="eyebrow">02 / 3D · CGI &amp; GenAI Social Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="copy" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-82.png" alt="Define Strategy" width="845" height="1301" loading="lazy" decoding="async"><img class="art" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-83.jpeg" alt="Define Strategy" width="1600" height="1060" loading="lazy" decoding="async"></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-84.jpeg" alt="Define Strategy" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 40%;"></i></div><div class="num">20 / 50</div></div></section>
+
+<section class="slide k-video" id="slide-20" data-n="21" data-slide-name="Design and Deliver" aria-label="Design and Deliver" style="--bg: #e3ebee;"><div class="chrome"><div class="eyebrow">02 / 3D · CGI &amp; GenAI Social Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><img class="cap m-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-86.png" alt="Design and Deliver" width="541" height="73" loading="lazy" decoding="async"><div class="vhost" style="--cols: 1;"><img class="plate d-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-87.jpeg" alt="Design and Deliver" width="2400" height="1350" loading="lazy" decoding="async"><div class="vcell" style="--ar: 1; --x: 4.537%; --y: 18.520%; --w: 43.661%; --h: 77.620%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-21.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 1; --x: 52.065%; --y: 18.520%; --w: 43.661%; --h: 77.620%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-22.mp4" loop="" playsinline="" muted="" preload="none"></video></div></div></div><div class="foot"><div class="bar"><i style="width: 42%;"></i></div><div class="num">21 / 50</div></div></section>
+
+<section class="slide k-featured" id="slide-21" data-n="22" data-slide-name="Other Featured Projects" aria-label="Other Featured Projects" style="--bg: #e3ebee;"><div class="chrome"><div class="eyebrow">02 / 3D · CGI &amp; GenAI Social Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="cap" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-89.png" alt="Other Featured Projects" width="1100" height="113" loading="lazy" decoding="async"><div class="artscroll"><img src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-90.jpeg" alt="Other Featured Projects" width="1600" height="539" loading="lazy" decoding="async"></div><div class="panhint"><span>swipe</span><span>→</span></div></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-91.jpeg" alt="Other Featured Projects" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 44%;"></i></div><div class="num">22 / 50</div></div></section>
+
+<section class="slide k-video tall" id="slide-22" data-n="23" data-slide-name="Costco Co-Branding" aria-label="Costco Co-Branding" style="--bg: #e4ecef;"><div class="chrome"><div class="eyebrow">02 / 3D · CGI &amp; GenAI Social Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><img class="cap m-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-93.png" alt="Costco Co-Branding" width="1100" height="49" loading="lazy" decoding="async"><div class="vhost" style="--cols: 2;"><img class="plate d-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-94.jpeg" alt="Costco Co-Branding" width="2400" height="1350" loading="lazy" decoding="async"><div class="vcell" style="--ar: 0.5625; --x: 2.441%; --y: 18.579%; --w: 15.032%; --h: 47.507%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-23.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 18.210%; --y: 18.579%; --w: 15.032%; --h: 47.507%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-24.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 34.002%; --y: 18.579%; --w: 15.032%; --h: 47.507%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-25.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 49.782%; --y: 18.579%; --w: 15.032%; --h: 47.507%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-26.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 65.685%; --y: 18.579%; --w: 15.032%; --h: 47.507%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-27.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 81.479%; --y: 18.579%; --w: 15.032%; --h: 47.507%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-28.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell wide" style="--ar: 1.7778; --x: 2.441%; --y: 67.822%; --w: 30.801%; --h: 30.801%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-29.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell wide" style="--ar: 1.7778; --x: 34.002%; --y: 67.822%; --w: 30.801%; --h: 30.801%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-30.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell wide" style="--ar: 1.7778; --x: 65.685%; --y: 67.822%; --w: 30.801%; --h: 30.801%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-31.mp4" loop="" playsinline="" muted="" preload="none"></video></div></div></div><div class="foot"><div class="bar"><i style="width: 46%;"></i></div><div class="num">23 / 50</div></div></section>
+
+<section class="slide k-video" id="slide-23" data-n="24" data-slide-name="Secret vs Competitor Products" aria-label="Secret vs Competitor Products" style="--bg: #e4ecef;"><div class="chrome"><div class="eyebrow">02 / 3D · CGI &amp; GenAI Social Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><img class="cap m-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-96.png" alt="Secret vs Competitor Products" width="1100" height="57" loading="lazy" decoding="async"><div class="vhost" style="--cols: 2;"><img class="plate d-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-97.jpeg" alt="Secret vs Competitor Products" width="2400" height="1350" loading="lazy" decoding="async"><div class="vcell" style="--ar: 0.5625; --x: 1.023%; --y: 23.145%; --w: 23.772%; --h: 75.131%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-32.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 25.745%; --y: 23.145%; --w: 23.772%; --h: 75.131%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-33.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 50.468%; --y: 23.150%; --w: 23.770%; --h: 75.126%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-34.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 75.205%; --y: 23.145%; --w: 23.772%; --h: 75.131%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-35.mp4" loop="" playsinline="" muted="" preload="none"></video></div></div></div><div class="foot"><div class="bar"><i style="width: 48%;"></i></div><div class="num">24 / 50</div></div></section>
+
+<section class="slide k-video" id="slide-24" data-n="25" data-slide-name="Secret vs Competitor Products" aria-label="Secret vs Competitor Products" style="--bg: #e4ecef;"><div class="chrome"><div class="eyebrow">02 / 3D · CGI &amp; GenAI Social Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><img class="cap m-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-99.png" alt="Secret vs Competitor Products" width="1100" height="57" loading="lazy" decoding="async"><div class="vhost" style="--cols: 2;"><img class="plate d-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-100.jpeg" alt="Secret vs Competitor Products" width="2400" height="1350" loading="lazy" decoding="async"><div class="vcell" style="--ar: 0.5625; --x: 1.022%; --y: 23.145%; --w: 23.772%; --h: 75.131%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-36.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 25.726%; --y: 23.145%; --w: 23.770%; --h: 75.126%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-37.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 50.504%; --y: 23.145%; --w: 23.735%; --h: 75.014%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-38.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 75.205%; --y: 23.145%; --w: 23.772%; --h: 75.131%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-39.mp4" loop="" playsinline="" muted="" preload="none"></video></div></div></div><div class="foot"><div class="bar"><i style="width: 50%;"></i></div><div class="num">25 / 50</div></div></section>
+
+<section class="slide k-video" id="slide-25" data-n="26" data-slide-name="Secret AMJ" aria-label="Secret AMJ" style="--bg: #e4ecef;"><div class="chrome"><div class="eyebrow">02 / 3D · CGI &amp; GenAI Social Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><img class="cap m-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-102.png" alt="Secret AMJ" width="1100" height="57" loading="lazy" decoding="async"><div class="vhost" style="--cols: 2;"><img class="plate d-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-103.jpeg" alt="Secret AMJ" width="2400" height="1350" loading="lazy" decoding="async"><div class="vcell" style="--ar: 0.5625; --x: 1.022%; --y: 23.250%; --w: 23.772%; --h: 75.131%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-40.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 25.724%; --y: 23.027%; --w: 23.772%; --h: 75.131%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-41.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 50.504%; --y: 23.250%; --w: 23.772%; --h: 75.131%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-42.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 75.283%; --y: 23.145%; --w: 23.772%; --h: 75.131%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-43.mp4" loop="" playsinline="" muted="" preload="none"></video></div></div></div><div class="foot"><div class="bar"><i style="width: 52%;"></i></div><div class="num">26 / 50</div></div></section>
+
+<section class="slide k-divider" id="slide-26" data-n="27" data-slide-name="03 / CGI · AI Scenes + Environments" aria-label="03 / CGI · AI Scenes + Environments" style="--bg: #f3eef4;"><div class="chrome"><div class="eyebrow">03 / CGI · AI Scenes + Environments</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="copy" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-105.png" alt="03 / CGI · AI Scenes + Environments" width="753" height="730" loading="lazy" decoding="async"><img class="art" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-106.jpeg" alt="03 / CGI · AI Scenes + Environments" width="1600" height="864" loading="lazy" decoding="async"></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-107.jpeg" alt="03 / CGI · AI Scenes + Environments" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 54%;"></i></div><div class="num">27 / 50</div></div></section>
+
+<section class="slide k-twocol" id="slide-27" data-n="28" data-slide-name="Venus Shave Assets Refresh" aria-label="Venus Shave Assets Refresh" style="--bg: #f3eef4;"><div class="chrome"><div class="eyebrow">03 / CGI · AI Scenes + Environments</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="copy" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-109.png" alt="Venus Shave Assets Refresh" width="852" height="1315" loading="lazy" decoding="async"><img class="art" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-110.jpeg" alt="Venus Shave Assets Refresh" width="1600" height="971" loading="lazy" decoding="async"></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-111.jpeg" alt="Venus Shave Assets Refresh" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 56%;"></i></div><div class="num">28 / 50</div></div></section>
+
+<section class="slide k-twocol" id="slide-28" data-n="29" data-slide-name="Define Strategy" aria-label="Define Strategy" style="--bg: #f3eef4;"><div class="chrome"><div class="eyebrow">03 / CGI · AI Scenes + Environments</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="copy" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-113.png" alt="Define Strategy" width="812" height="1385" loading="lazy" decoding="async"><img class="art" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-114.jpeg" alt="Define Strategy" width="1600" height="1155" loading="lazy" decoding="async"></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-115.jpeg" alt="Define Strategy" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 58%;"></i></div><div class="num">29 / 50</div></div></section>
+
+<section class="slide k-capart" id="slide-29" data-n="30" data-slide-name="Design and Deliver" aria-label="Design and Deliver" style="--bg: #f3eef4;"><div class="chrome"><div class="eyebrow">03 / CGI · AI Scenes + Environments</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="cap" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-121.png" alt="Design and Deliver" width="539" height="73" loading="lazy" decoding="async"><div class="artscroll"><img src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-118.jpeg" alt="Design and Deliver" width="1600" height="819" loading="lazy" decoding="async"></div><div class="panhint"><span>swipe</span><span>→</span></div></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-119.jpeg" alt="Design and Deliver" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 60%;"></i></div><div class="num">30 / 50</div></div></section>
+
+<section class="slide k-capart" id="slide-30" data-n="31" data-slide-name="Design and Deliver" aria-label="Design and Deliver" style="--bg: #f3eef4;"><div class="chrome"><div class="eyebrow">03 / CGI · AI Scenes + Environments</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="cap" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-121.png" alt="Design and Deliver" width="539" height="73" loading="lazy" decoding="async"><div class="artscroll"><img src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-122.jpeg" alt="Design and Deliver" width="1600" height="819" loading="lazy" decoding="async"></div><div class="panhint"><span>swipe</span><span>→</span></div></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-123.jpeg" alt="Design and Deliver" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 62%;"></i></div><div class="num">31 / 50</div></div></section>
+
+<section class="slide k-featured" id="slide-31" data-n="32" data-slide-name="Other Featured Projects" aria-label="Other Featured Projects" style="--bg: #f3eef4;"><div class="chrome"><div class="eyebrow">03 / CGI · AI Scenes + Environments</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="cap" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-125.png" alt="Other Featured Projects" width="1100" height="113" loading="lazy" decoding="async"><div class="artscroll"><img src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-126.jpeg" alt="Other Featured Projects" width="1600" height="489" loading="lazy" decoding="async"></div><div class="panhint"><span>swipe</span><span>→</span></div></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-127.jpeg" alt="Other Featured Projects" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 64%;"></i></div><div class="num">32 / 50</div></div></section>
+
+<section class="slide k-video tall" id="slide-32" data-n="33" data-slide-name="Olay Assets" aria-label="Olay Assets" style="--bg: #f4edf5;"><div class="chrome"><div class="eyebrow">03 / CGI · AI Scenes + Environments</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="vhost" style="--cols: 2;"><img class="plate d-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-129.jpeg" alt="Olay Assets" width="2400" height="1350" loading="lazy" decoding="async"><div class="vcell" style="--ar: 0.571; --x: 7.182%; --y: 2.596%; --w: 17.319%; --h: 53.926%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-44.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 24.277%; --y: 2.596%; --w: 17.066%; --h: 53.937%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-45.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 41.343%; --y: 2.596%; --w: 16.997%; --h: 53.718%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-46.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 58.313%; --y: 2.863%; --w: 17.063%; --h: 53.926%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-47.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.5625; --x: 75.131%; --y: 2.596%; --w: 17.063%; --h: 53.926%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-48.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.7477; --x: 41.522%; --y: 56.312%; --w: 17.282%; --h: 41.092%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-49.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.7477; --x: 58.134%; --y: 56.314%; --w: 17.245%; --h: 41.003%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-50.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.7477; --x: 7.182%; --y: 56.522%; --w: 17.245%; --h: 41.003%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-51.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.7477; --x: 24.277%; --y: 56.522%; --w: 17.194%; --h: 40.881%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-52.mp4" loop="" playsinline="" muted="" preload="none"></video></div><div class="vcell" style="--ar: 0.7493; --x: 74.952%; --y: 56.522%; --w: 17.282%; --h: 41.003%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-53.mp4" loop="" playsinline="" muted="" preload="none"></video></div></div></div><div class="foot"><div class="bar"><i style="width: 66%;"></i></div><div class="num">33 / 50</div></div></section>
+
+<section class="slide k-capart" id="slide-33" data-n="34" data-slide-name="Olay Body Wash" aria-label="Olay Body Wash" style="--bg: #f4edf5;"><div class="chrome"><div class="eyebrow">03 / CGI · AI Scenes + Environments</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><div class="artscroll"><img src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-131.jpeg" alt="Olay Body Wash" width="1600" height="871" loading="lazy" decoding="async"></div><div class="panhint"><span>swipe</span><span>→</span></div></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-132.jpeg" alt="Olay Body Wash" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 68%;"></i></div><div class="num">34 / 50</div></div></section>
+
+<section class="slide k-capart" id="slide-34" data-n="35" data-slide-name="Old Spice Men's Cologne" aria-label="Old Spice Men's Cologne" style="--bg: #f4edf5;"><div class="chrome"><div class="eyebrow">03 / CGI · AI Scenes + Environments</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><div class="artscroll"><img src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-134.jpeg" alt="Old Spice Men's Cologne" width="1600" height="900" loading="lazy" decoding="async"></div><div class="panhint"><span>swipe</span><span>→</span></div></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-135.jpeg" alt="Old Spice Men's Cologne" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 70%;"></i></div><div class="num">35 / 50</div></div></section>
+
+<section class="slide k-capart" id="slide-35" data-n="36" data-slide-name="Ivory Bodywash Composites" aria-label="Ivory Bodywash Composites" style="--bg: #f4edf5;"><div class="chrome"><div class="eyebrow">03 / CGI · AI Scenes + Environments</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="cap" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-137.png" alt="Ivory Bodywash Composites" width="1100" height="96" loading="lazy" decoding="async"><div class="artscroll"><img src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-138.jpeg" alt="Ivory Bodywash Composites" width="1600" height="787" loading="lazy" decoding="async"></div><div class="panhint"><span>swipe</span><span>→</span></div></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-139.jpeg" alt="Ivory Bodywash Composites" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 72%;"></i></div><div class="num">36 / 50</div></div></section>
+
+<section class="slide k-capart" id="slide-36" data-n="37" data-slide-name="Ivory Bodywash Banners" aria-label="Ivory Bodywash Banners" style="--bg: #f4edf5;"><div class="chrome"><div class="eyebrow">03 / CGI · AI Scenes + Environments</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="cap" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-141.png" alt="Ivory Bodywash Banners" width="1100" height="88" loading="lazy" decoding="async"><div class="artscroll"><img src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-142.jpeg" alt="Ivory Bodywash Banners" width="1600" height="555" loading="lazy" decoding="async"></div><div class="panhint"><span>swipe</span><span>→</span></div></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-143.jpeg" alt="Ivory Bodywash Banners" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 74%;"></i></div><div class="num">37 / 50</div></div></section>
+
+<section class="slide k-divider" id="slide-37" data-n="38" data-slide-name="04 / Display Banner Ads" aria-label="04 / Display Banner Ads" style="--bg: #e6e6e6;"><div class="chrome"><div class="eyebrow">04 / Display Banner Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="copy" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-145.png" alt="04 / Display Banner Ads" width="762" height="730" loading="lazy" decoding="async"><img class="art" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-146.jpeg" alt="04 / Display Banner Ads" width="1600" height="864" loading="lazy" decoding="async"></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-147.jpeg" alt="04 / Display Banner Ads" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 76%;"></i></div><div class="num">38 / 50</div></div></section>
+
+<section class="slide k-capart" id="slide-38" data-n="39" data-slide-name="Display Banner Ads" aria-label="Display Banner Ads" style="--bg: #e6e6e6;"><div class="chrome"><div class="eyebrow">04 / Display Banner Ads</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><div class="artscroll"><img src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-149.jpeg" alt="Display Banner Ads" width="1600" height="878" loading="lazy" decoding="async"></div><div class="panhint"><span>swipe</span><span>→</span></div></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-150.jpeg" alt="Display Banner Ads" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 78%;"></i></div><div class="num">39 / 50</div></div></section>
+
+<section class="slide k-divider" id="slide-39" data-n="40" data-slide-name="05 / Sponsored Brand Videos" aria-label="05 / Sponsored Brand Videos" style="--bg: #fff9e9;"><div class="chrome"><div class="eyebrow">05 / Sponsored Brand Videos</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="copy" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-152.png" alt="05 / Sponsored Brand Videos" width="757" height="730" loading="lazy" decoding="async"><img class="art" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-153.jpeg" alt="05 / Sponsored Brand Videos" width="1600" height="865" loading="lazy" decoding="async"></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-154.jpeg" alt="05 / Sponsored Brand Videos" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 80%;"></i></div><div class="num">40 / 50</div></div></section>
+
+<section class="slide k-twocol" id="slide-40" data-n="41" data-slide-name="Always Period Underwear Product Video" aria-label="Always Period Underwear Product Video" style="--bg: #fff9e9;"><div class="chrome"><div class="eyebrow">05 / Sponsored Brand Videos</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="copy" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-156.png" alt="Always Period Underwear Product Video" width="1100" height="1410" loading="lazy" decoding="async"><img class="art" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-157.jpeg" alt="Always Period Underwear Product Video" width="1600" height="1469" loading="lazy" decoding="async"></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-158.jpeg" alt="Always Period Underwear Product Video" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 82%;"></i></div><div class="num">41 / 50</div></div></section>
+
+<section class="slide k-twocol" id="slide-41" data-n="42" data-slide-name="Execution Strategy" aria-label="Execution Strategy" style="--bg: #fff9e9;"><div class="chrome"><div class="eyebrow">05 / Sponsored Brand Videos</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="copy" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-160.png" alt="Execution Strategy" width="931" height="1626" loading="lazy" decoding="async"><img class="art" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-161.jpeg" alt="Execution Strategy" width="1600" height="1095" loading="lazy" decoding="async"></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-162.jpeg" alt="Execution Strategy" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 84%;"></i></div><div class="num">42 / 50</div></div></section>
+
+<section class="slide k-video" id="slide-42" data-n="43" data-slide-name="Design and Deliver" aria-label="Design and Deliver" style="--bg: #fff9e9;"><div class="chrome"><div class="eyebrow">05 / Sponsored Brand Videos</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><img class="cap m-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-164.png" alt="Design and Deliver" width="541" height="75" loading="lazy" decoding="async"><div class="vhost" style="--cols: 1;"><img class="plate d-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-165.jpeg" alt="Design and Deliver" width="2400" height="1350" loading="lazy" decoding="async"><div class="vcell" style="--ar: 1.7778; --x: 3.754%; --y: 17.337%; --w: 80.096%; --h: 80.096%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-54.mp4" loop="" playsinline="" muted="" preload="none"></video></div></div></div><div class="foot"><div class="bar"><i style="width: 86%;"></i></div><div class="num">43 / 50</div></div></section>
+
+<section class="slide k-featured" id="slide-43" data-n="44" data-slide-name="Other Featured Projects" aria-label="Other Featured Projects" style="--bg: #fff9e9;"><div class="chrome"><div class="eyebrow">05 / Sponsored Brand Videos</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="m-only" style="flex: 1 1 auto; min-height: 0px; display: flex; flex-direction: column; gap: var(--gap);"><img class="cap" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-167.png" alt="Other Featured Projects" width="1100" height="115" loading="lazy" decoding="async"><div class="artscroll"><img src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-168.jpeg" alt="Other Featured Projects" width="1600" height="501" loading="lazy" decoding="async"></div><div class="panhint"><span>swipe</span><span>→</span></div></div><div class="canvas d-only"><img class="plate" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-169.jpeg" alt="Other Featured Projects" width="2400" height="1350" loading="lazy" decoding="async"></div></div><div class="foot"><div class="bar"><i style="width: 88%;"></i></div><div class="num">44 / 50</div></div></section>
+
+<section class="slide k-video" id="slide-44" data-n="45" data-slide-name="Always" aria-label="Always" style="--bg: #fff9ea;"><div class="chrome"><div class="eyebrow">05 / Sponsored Brand Videos</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="vhost" style="--cols: 1;"><img class="plate d-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-171.jpeg" alt="Always" width="2400" height="1350" loading="lazy" decoding="async"><div class="vcell" style="--ar: 1.7778; --x: 8.691%; --y: 8.724%; --w: 82.645%; --h: 82.645%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-55.mp4" loop="" playsinline="" muted="" preload="none"></video></div></div></div><div class="foot"><div class="bar"><i style="width: 90%;"></i></div><div class="num">45 / 50</div></div></section>
+
+<section class="slide k-video" id="slide-45" data-n="46" data-slide-name="Always" aria-label="Always" style="--bg: #fff9ea;"><div class="chrome"><div class="eyebrow">05 / Sponsored Brand Videos</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="vhost" style="--cols: 1;"><img class="plate d-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-173.jpeg" alt="Always" width="2400" height="1350" loading="lazy" decoding="async"><div class="vcell" style="--ar: 1.7778; --x: 9.383%; --y: 9.383%; --w: 81.235%; --h: 81.235%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-56.mp4" loop="" playsinline="" muted="" preload="none"></video></div></div></div><div class="foot"><div class="bar"><i style="width: 92%;"></i></div><div class="num">46 / 50</div></div></section>
+
+<section class="slide k-video" id="slide-46" data-n="47" data-slide-name="Always" aria-label="Always" style="--bg: #ffffff;"><div class="chrome"><div class="eyebrow">05 / Sponsored Brand Videos</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="vhost" style="--cols: 1;"><img class="plate d-only" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-175.jpeg" alt="Always" width="2400" height="1350" loading="lazy" decoding="async"><div class="vcell" style="--ar: 1.7778; --x: 9.383%; --y: 9.383%; --w: 81.235%; --h: 81.235%;"><video src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/video-57.mp4" loop="" playsinline="" muted="" preload="none"></video></div></div></div><div class="foot"><div class="bar"><i style="width: 94%;"></i></div><div class="num">47 / 50</div></div></section>
+
+<section class="slide k-closer on-dark" id="slide-47" data-n="48" data-slide-name="Brand Assets Turnaround Times" aria-label="Brand Assets Turnaround Times" style="--bg: #00b0f0;"><div class="chrome"><div class="eyebrow">Global Image Factory</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="inner m-only"><h2 class="closer-h">Brand assets turnaround times*</h2><ul class="turnaround"><li><div class="ta-k">SBV Sponsored Brand Videos</div><div class="ta-v"><b>7 Days</b> <span>(excluding shoot days for 1 master)</span></div></li><li><div class="ta-k">Omnichannel Meta Videos</div><div class="ta-v"><b>3 Days</b> <span>(for a set of 25 short videos)</span></div></li><li><div class="ta-k">3D/CGI &amp; GenAI Social Ads</div><div class="ta-v"><b>10 Days</b> <span>(for a set of 30 short videos)</span></div></li><li><div class="ta-k">CGI Scene Environments</div><div class="ta-v"><b>5 Days</b> <span>(for a set of 10 stills at multiple angles)</span></div></li></ul><p class="footnote">*Assets turnaround times listed for initial Round 1 submissions only. Total project time (Day 0 to Final handoff varies based on number of internal rounds of feedback/reviews or any changes in the brief or specifications</p></div><div class="canvas live d-only" style="--bg: #00b0f0;"><div class="inner"><h2 class="closer-h">Brand assets turnaround times*</h2><ul class="turnaround"><li><div class="ta-k">SBV Sponsored Brand Videos</div><div class="ta-v"><b>7 Days</b> <span>(excluding shoot days for 1 master)</span></div></li><li><div class="ta-k">Omnichannel Meta Videos</div><div class="ta-v"><b>3 Days</b> <span>(for a set of 25 short videos)</span></div></li><li><div class="ta-k">3D/CGI &amp; GenAI Social Ads</div><div class="ta-v"><b>10 Days</b> <span>(for a set of 30 short videos)</span></div></li><li><div class="ta-k">CGI Scene Environments</div><div class="ta-v"><b>5 Days</b> <span>(for a set of 10 stills at multiple angles)</span></div></li></ul><p class="footnote">*Assets turnaround times listed for initial Round 1 submissions only. Total project time (Day 0 to Final handoff varies based on number of internal rounds of feedback/reviews or any changes in the brief or specifications</p></div></div></div><div class="foot"><div class="bar"><i style="width: 96%;"></i></div><div class="num">48 / 50</div></div></section>
+
+<section class="slide k-closer on-dark" id="slide-48" data-n="49" data-slide-name="Thank You" aria-label="Thank You" style="--bg: #00b0f0;"><div class="chrome"><div class="eyebrow">Global Image Factory</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="inner m-only"><h2 class="closer-h">Thank you to our key stakeholders across P&amp;G brands</h2><ul class="names"><li>Chris Talbott</li><li>Adam Tillman</li><li>Sophia Bazo</li><li>Heather GlennGunnarson</li><li>Gracie Harrison</li><li>Jack Devine</li><li>Logan Meeker</li><li>Stephanie Wong</li><li>Riley Khan</li><li>Mollie Griesedieck</li><li>Genna Hartung</li><li>Drake Stimson</li><li>Dane Wood</li><li>Leon Bao</li><li>Lara Tiller</li><li>Juliet Louw</li><li>Signe Luebbers</li><li>Damilola Oyebanjo</li><li>Aanchal Srivastava</li><li>Rigbe Zemicael</li><li>Lauren Riley</li><li>Lindsey Profitt</li><li>Katharine Bakes</li><li>Theresa Bloemker</li><li>Samuel Juszczyk</li><li>Daniel Li</li><li>Gunjan Bahri</li><li>Julia Mastrandrea</li><li>Marta Lopez Silva</li><li>Jessica Newman</li></ul></div><div class="canvas live d-only" style="--bg: #00b0f0;"><div class="inner"><h2 class="closer-h">Thank you to our key stakeholders across P&amp;G brands</h2><ul class="names"><li>Chris Talbott</li><li>Adam Tillman</li><li>Sophia Bazo</li><li>Heather GlennGunnarson</li><li>Gracie Harrison</li><li>Jack Devine</li><li>Logan Meeker</li><li>Stephanie Wong</li><li>Riley Khan</li><li>Mollie Griesedieck</li><li>Genna Hartung</li><li>Drake Stimson</li><li>Dane Wood</li><li>Leon Bao</li><li>Lara Tiller</li><li>Juliet Louw</li><li>Signe Luebbers</li><li>Damilola Oyebanjo</li><li>Aanchal Srivastava</li><li>Rigbe Zemicael</li><li>Lauren Riley</li><li>Lindsey Profitt</li><li>Katharine Bakes</li><li>Theresa Bloemker</li><li>Samuel Juszczyk</li><li>Daniel Li</li><li>Gunjan Bahri</li><li>Julia Mastrandrea</li><li>Marta Lopez Silva</li><li>Jessica Newman</li></ul></div></div></div><div class="foot"><div class="bar"><i style="width: 98%;"></i></div><div class="num">49 / 50</div></div></section>
+
+<section class="slide k-closer on-dark" id="slide-49" data-n="50" data-slide-name="Contact" aria-label="Contact" style="--bg: #00b0f0;"><div class="chrome"><div class="eyebrow">Global Image Factory</div><img class="mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"></div><div class="stage"><div class="inner m-only"><img class="closer-mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"><div class="contact"><div class="blk"><div class="lab">For business queries</div><a href="mailto:sean@globalimagefactory.com">sean@globalimagefactory.com</a><a class="tel" href="tel:+13059270049">(305) 927 0049</a></div><div class="blk"><div class="lab">For creative projects</div><a href="mailto:rajit@globalimagefactory.com">rajit@globalimagefactory.com</a><a class="tel" href="tel:+17868206121">(786) 820 6121</a></div></div></div><div class="canvas live d-only" style="--bg: #00b0f0;"><div class="inner"><img class="closer-mark" src="https://pub-ae41db6031b0469ba2dbb5a977014d6b.r2.dev/pgdigital/image-180.png" alt="Global Image Factory" width="278" height="102" loading="eager" decoding="async"><div class="contact"><div class="blk"><div class="lab">For business queries</div><a href="mailto:sean@globalimagefactory.com">sean@globalimagefactory.com</a><a class="tel" href="tel:+13059270049">(305) 927 0049</a></div><div class="blk"><div class="lab">For creative projects</div><a href="mailto:rajit@globalimagefactory.com">rajit@globalimagefactory.com</a><a class="tel" href="tel:+17868206121">(786) 820 6121</a></div></div></div></div></div><div class="foot"><div class="bar"><i style="width: 100%;"></i></div><div class="num">50 / 50</div></div></section>
+</main>
+
+<script>
+/* Slide spec for the P&G Digital First deck.
+   Plain data, wrapped in an assignment rather than shipped as .json so the
+   deck opens straight from the filesystem — fetch() is blocked on file://.
+   Edit freely; deck.js reads window.__SLIDES__. */
+window.__SLIDES__ = {
+ "slides": [
+  {
+   "n": 1,
+   "kind": "cover",
+   "bg": "#f2f2f2",
+   "label": "Creative Deck",
+   "full": {
+    "src": "assets/img/full/s01.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "section": "Digital Creds Presentation"
+  },
+  {
+   "n": 2,
+   "kind": "hero",
+   "bg": "#ffffff",
+   "label": "Brands Showcase",
+   "full": {
+    "src": "assets/img/full/s02.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "section": "Digital Creds Presentation"
+  },
+  {
+   "n": 3,
+   "kind": "info",
+   "bg": "#f1efe7",
+   "label": "Projects Summary",
+   "full": {
+    "src": "assets/img/full/s03.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "parts": {
+    "title": {
+     "src": "assets/img/info/s03-title.png",
+     "w": 1100,
+     "h": 626
+    },
+    "list": {
+     "src": "assets/img/info/s03-list.png",
+     "w": 1064,
+     "h": 772
+    },
+    "stats": [
+     {
+      "src": "assets/img/info/s03-stats1.png",
+      "w": 560,
+      "h": 336
+     },
+     {
+      "src": "assets/img/info/s03-stats2.png",
+      "w": 496,
+      "h": 360
+     },
+     {
+      "src": "assets/img/info/s03-stats3.png",
+      "w": 496,
+      "h": 360
+     },
+     {
+      "src": "assets/img/info/s03-stats4.png",
+      "w": 480,
+      "h": 360
+     }
+    ],
+    "body": [
+     {
+      "src": "assets/img/info/s03-body1.png",
+      "w": 1000,
+      "h": 891
+     },
+     {
+      "src": "assets/img/info/s03-body2.png",
+      "w": 1032,
+      "h": 891
+     }
+    ]
+   },
+   "section": "Digital Creds Presentation"
+  },
+  {
+   "n": 4,
+   "kind": "info",
+   "bg": "#f2efe8",
+   "label": "Approach",
+   "full": {
+    "src": "assets/img/full/s04.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "parts": {
+    "title": {
+     "src": "assets/img/info/s04-title.png",
+     "w": 1100,
+     "h": 258
+    },
+    "circles": [
+     {
+      "src": "assets/img/info/s04-circles1.jpg",
+      "w": 560,
+      "h": 479
+     },
+     {
+      "src": "assets/img/info/s04-circles2.jpg",
+      "w": 520,
+      "h": 489
+     },
+     {
+      "src": "assets/img/info/s04-circles3.jpg",
+      "w": 560,
+      "h": 507
+     },
+     {
+      "src": "assets/img/info/s04-circles4.jpg",
+      "w": 520,
+      "h": 484
+     }
+    ],
+    "steps": [
+     {
+      "src": "assets/img/info/s04-steps1.png",
+      "w": 808,
+      "h": 612
+     },
+     {
+      "src": "assets/img/info/s04-steps2.png",
+      "w": 728,
+      "h": 612
+     },
+     {
+      "src": "assets/img/info/s04-steps3.png",
+      "w": 736,
+      "h": 612
+     },
+     {
+      "src": "assets/img/info/s04-steps4.png",
+      "w": 760,
+      "h": 612
+     }
+    ]
+   },
+   "section": "Digital Creds Presentation"
+  },
+  {
+   "n": 5,
+   "kind": "divider",
+   "bg": "#e5f4ef",
+   "label": "01 / Omnichannel Meta Ads",
+   "full": {
+    "src": "assets/img/full/s05.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "copy": {
+    "src": "assets/img/copy/s05.png",
+    "w": 660,
+    "h": 730,
+    "box": [
+     0.07223,
+     0.26533,
+     0.23719,
+     0.58978
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s05.jpg",
+    "w": 1600,
+    "h": 865,
+    "box": [
+     0.31467,
+     0.17067,
+     1.0,
+     0.82933
+    ]
+   },
+   "section": "01 / Omnichannel Meta Ads"
+  },
+  {
+   "n": 6,
+   "kind": "twocol",
+   "bg": "#e5f4ef",
+   "label": "Secret Clinical + Whole Body Labels Refresh Launch",
+   "full": {
+    "src": "assets/img/full/s06.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "copy": {
+    "src": "assets/img/copy/s06.png",
+    "w": 977,
+    "h": 1734,
+    "box": [
+     0.04199,
+     0.04356,
+     0.28618,
+     0.81422
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s06.jpg",
+    "w": 1600,
+    "h": 895,
+    "box": [
+     0.30917,
+     0.14178,
+     1.0,
+     0.82889
+    ]
+   },
+   "section": "01 / Omnichannel Meta Ads"
+  },
+  {
+   "n": 7,
+   "kind": "twocol",
+   "bg": "#e5f4ef",
+   "label": "Define Strategy",
+   "full": {
+    "src": "assets/img/full/s07.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "copy": {
+    "src": "assets/img/copy/s07.png",
+    "w": 1100,
+    "h": 1844,
+    "box": [
+     0.04249,
+     0.04356,
+     0.32242,
+     0.87822
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s07.jpg",
+    "w": 1600,
+    "h": 1149,
+    "box": [
+     0.37291,
+     0.09778,
+     1.0,
+     0.89822
+    ]
+   },
+   "section": "01 / Omnichannel Meta Ads"
+  },
+  {
+   "n": 8,
+   "kind": "video",
+   "bg": "#e5f4ef",
+   "label": "Design and Deliver",
+   "full": {
+    "src": "assets/img/full/s08.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "cap": {
+    "src": "assets/img/cap/s08.png",
+    "w": 539,
+    "h": 73,
+    "box": [
+     0.04274,
+     0.04711,
+     0.17746,
+     0.07956
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s08.jpg",
+    "w": 1600,
+    "h": 823,
+    "box": [
+     0.04324,
+     0.09956,
+     1.0,
+     0.97422
+    ]
+   },
+   "videos": [
+    {
+     "src": "assets/video/v01.mp4",
+     "x": 0.08422,
+     "y": 0.18638,
+     "w": 0.12199,
+     "h": 0.38554,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v02.mp4",
+     "x": 0.21238,
+     "y": 0.18638,
+     "w": 0.12199,
+     "h": 0.38554,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v03.mp4",
+     "x": 0.34055,
+     "y": 0.18638,
+     "w": 0.12199,
+     "h": 0.38554,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v04.mp4",
+     "x": 0.46872,
+     "y": 0.18638,
+     "w": 0.12279,
+     "h": 0.38809,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v05.mp4",
+     "x": 0.59769,
+     "y": 0.18638,
+     "w": 0.12279,
+     "h": 0.38809,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v06.mp4",
+     "x": 0.72666,
+     "y": 0.18638,
+     "w": 0.12279,
+     "h": 0.38809,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v07.mp4",
+     "x": 0.08422,
+     "y": 0.58671,
+     "w": 0.12279,
+     "h": 0.38809,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v10.mp4",
+     "x": 0.21333,
+     "y": 0.58671,
+     "w": 0.12199,
+     "h": 0.38554,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v08.mp4",
+     "x": 0.34163,
+     "y": 0.58671,
+     "w": 0.12279,
+     "h": 0.38809,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v09.mp4",
+     "x": 0.47073,
+     "y": 0.58671,
+     "w": 0.12279,
+     "h": 0.38809,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v11.mp4",
+     "x": 0.59984,
+     "y": 0.58671,
+     "w": 0.12199,
+     "h": 0.38554,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v12.mp4",
+     "x": 0.72814,
+     "y": 0.58671,
+     "w": 0.12199,
+     "h": 0.38554,
+     "ar": 0.5625
+    }
+   ],
+   "section": "01 / Omnichannel Meta Ads"
+  },
+  {
+   "n": 9,
+   "kind": "video",
+   "bg": "#e5f4ef",
+   "label": "Design and Deliver",
+   "full": {
+    "src": "assets/img/full/s09.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "cap": {
+    "src": "assets/img/cap/s09.png",
+    "w": 539,
+    "h": 73,
+    "box": [
+     0.04274,
+     0.04711,
+     0.17746,
+     0.07956
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s09.jpg",
+    "w": 1600,
+    "h": 755,
+    "box": [
+     0.04324,
+     0.09956,
+     1.0,
+     0.90267
+    ]
+   },
+   "videos": [
+    {
+     "src": "assets/video/v13.mp4",
+     "x": 0.04325,
+     "y": 0.2201,
+     "w": 0.21611,
+     "h": 0.68301,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v14.mp4",
+     "x": 0.27003,
+     "y": 0.2201,
+     "w": 0.21611,
+     "h": 0.68301,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v15.mp4",
+     "x": 0.49681,
+     "y": 0.2201,
+     "w": 0.21611,
+     "h": 0.68301,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v16.mp4",
+     "x": 0.72359,
+     "y": 0.2201,
+     "w": 0.21611,
+     "h": 0.68301,
+     "ar": 0.5625
+    }
+   ],
+   "section": "01 / Omnichannel Meta Ads"
+  },
+  {
+   "n": 10,
+   "kind": "divider",
+   "bg": "#e3ebee",
+   "label": "02 / 3D \u00b7 CGI & GenAI Social Ads",
+   "full": {
+    "src": "assets/img/full/s10.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "copy": {
+    "src": "assets/img/copy/s10.png",
+    "w": 750,
+    "h": 731,
+    "box": [
+     0.07223,
+     0.26533,
+     0.25969,
+     0.59022
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s10.jpg",
+    "w": 1600,
+    "h": 865,
+    "box": [
+     0.31467,
+     0.17067,
+     1.0,
+     0.82933
+    ]
+   },
+   "section": "02 / 3D \u00b7 CGI & GenAI Social Ads"
+  },
+  {
+   "n": 11,
+   "kind": "twocol",
+   "bg": "#e3ebee",
+   "label": "Secret Variety Packs Launch at Sam's Club",
+   "full": {
+    "src": "assets/img/full/s11.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "copy": {
+    "src": "assets/img/copy/s11.png",
+    "w": 930,
+    "h": 1463,
+    "box": [
+     0.04199,
+     0.04356,
+     0.27443,
+     0.69378
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s11.jpg",
+    "w": 1600,
+    "h": 1047,
+    "box": [
+     0.33517,
+     0.14444,
+     1.0,
+     0.91822
+    ]
+   },
+   "section": "02 / 3D \u00b7 CGI & GenAI Social Ads"
+  },
+  {
+   "n": 12,
+   "kind": "twocol",
+   "bg": "#e3ebee",
+   "label": "Define Strategy",
+   "full": {
+    "src": "assets/img/full/s12.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "copy": {
+    "src": "assets/img/copy/s12.png",
+    "w": 1029,
+    "h": 1920,
+    "box": [
+     0.04274,
+     0.04356,
+     0.29993,
+     0.89689
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s12.jpg",
+    "w": 1600,
+    "h": 1203,
+    "box": [
+     0.37841,
+     0.09822,
+     1.0,
+     0.92933
+    ]
+   },
+   "section": "02 / 3D \u00b7 CGI & GenAI Social Ads"
+  },
+  {
+   "n": 13,
+   "kind": "video",
+   "bg": "#e3ebee",
+   "label": "Design and Deliver",
+   "full": {
+    "src": "assets/img/full/s13.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "cap": {
+    "src": "assets/img/cap/s13.png",
+    "w": 541,
+    "h": 73,
+    "box": [
+     0.04274,
+     0.04711,
+     0.17796,
+     0.07956
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s13.jpg",
+    "w": 1600,
+    "h": 806,
+    "box": [
+     0.01325,
+     0.09956,
+     1.0,
+     0.98311
+    ]
+   },
+   "videos": [
+    {
+     "src": "assets/video/v17.mp4",
+     "x": 0.01293,
+     "y": 0.23241,
+     "w": 0.23772,
+     "h": 0.75131,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v18.mp4",
+     "x": 0.25829,
+     "y": 0.23241,
+     "w": 0.23772,
+     "h": 0.75131,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v19.mp4",
+     "x": 0.50364,
+     "y": 0.23241,
+     "w": 0.23772,
+     "h": 0.75131,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v20.mp4",
+     "x": 0.74899,
+     "y": 0.23125,
+     "w": 0.23772,
+     "h": 0.75131,
+     "ar": 0.5625
+    }
+   ],
+   "section": "02 / 3D \u00b7 CGI & GenAI Social Ads"
+  },
+  {
+   "n": 14,
+   "kind": "twocol",
+   "bg": "#e3ebee",
+   "label": "Venus x WNBA Partnership",
+   "full": {
+    "src": "assets/img/full/s14.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "copy": {
+    "src": "assets/img/copy/s14.png",
+    "w": 992,
+    "h": 1538,
+    "box": [
+     0.04199,
+     0.04356,
+     0.28993,
+     0.72711
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s14.jpg",
+    "w": 1600,
+    "h": 787,
+    "box": [
+     0.31667,
+     0.14844,
+     1.0,
+     0.74622
+    ]
+   },
+   "section": "02 / 3D \u00b7 CGI & GenAI Social Ads"
+  },
+  {
+   "n": 15,
+   "kind": "twocol",
+   "bg": "#e3ebee",
+   "label": "Define Strategy",
+   "full": {
+    "src": "assets/img/full/s15.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "copy": {
+    "src": "assets/img/copy/s15.png",
+    "w": 844,
+    "h": 1926,
+    "box": [
+     0.04274,
+     0.04356,
+     0.25369,
+     0.89956
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s15.jpg",
+    "w": 1600,
+    "h": 1147,
+    "box": [
+     0.36916,
+     0.09822,
+     1.0,
+     0.90267
+    ]
+   },
+   "section": "02 / 3D \u00b7 CGI & GenAI Social Ads"
+  },
+  {
+   "n": 16,
+   "kind": "capart",
+   "bg": "#e3ebee",
+   "label": "Design and Deliver",
+   "full": {
+    "src": "assets/img/full/s16.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "cap": {
+    "src": "assets/img/cap/s16.png",
+    "w": 541,
+    "h": 73,
+    "box": [
+     0.04274,
+     0.04711,
+     0.17796,
+     0.07956
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s16.jpg",
+    "w": 1600,
+    "h": 796,
+    "box": [
+     0.016,
+     0.09956,
+     1.0,
+     0.97022
+    ]
+   },
+   "section": "02 / 3D \u00b7 CGI & GenAI Social Ads"
+  },
+  {
+   "n": 17,
+   "kind": "capart",
+   "bg": "#e3ebee",
+   "label": "Design and Deliver",
+   "full": {
+    "src": "assets/img/full/s17.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "art": {
+    "src": "assets/img/art/s17.jpg",
+    "w": 1600,
+    "h": 837,
+    "box": [
+     0.02274,
+     0.04533,
+     1.0,
+     0.95467
+    ]
+   },
+   "section": "02 / 3D \u00b7 CGI & GenAI Social Ads"
+  },
+  {
+   "n": 18,
+   "kind": "capart",
+   "bg": "#e3ebee",
+   "label": "Design and Deliver",
+   "full": {
+    "src": "assets/img/full/s18.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "art": {
+    "src": "assets/img/art/s18.jpg",
+    "w": 1600,
+    "h": 837,
+    "box": [
+     0.02274,
+     0.04533,
+     1.0,
+     0.95467
+    ]
+   },
+   "section": "02 / 3D \u00b7 CGI & GenAI Social Ads"
+  },
+  {
+   "n": 19,
+   "kind": "twocol",
+   "bg": "#e3ebee",
+   "label": "Secret @Coachella26",
+   "full": {
+    "src": "assets/img/full/s19.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "copy": {
+    "src": "assets/img/copy/s19.png",
+    "w": 970,
+    "h": 1613,
+    "box": [
+     0.04199,
+     0.04356,
+     0.28443,
+     0.76044
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s19.jpg",
+    "w": 1600,
+    "h": 1166,
+    "box": [
+     0.34241,
+     0.06978,
+     1.0,
+     0.92178
+    ]
+   },
+   "section": "02 / 3D \u00b7 CGI & GenAI Social Ads"
+  },
+  {
+   "n": 20,
+   "kind": "twocol",
+   "bg": "#e3ebee",
+   "label": "Define Strategy",
+   "full": {
+    "src": "assets/img/full/s20.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "copy": {
+    "src": "assets/img/copy/s20.png",
+    "w": 845,
+    "h": 1301,
+    "box": [
+     0.04274,
+     0.04356,
+     0.25394,
+     0.62178
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s20.jpg",
+    "w": 1600,
+    "h": 1060,
+    "box": [
+     0.29443,
+     0.09822,
+     1.0,
+     0.92978
+    ]
+   },
+   "section": "02 / 3D \u00b7 CGI & GenAI Social Ads"
+  },
+  {
+   "n": 21,
+   "kind": "video",
+   "bg": "#e3ebee",
+   "label": "Design and Deliver",
+   "full": {
+    "src": "assets/img/full/s21.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "cap": {
+    "src": "assets/img/cap/s21.png",
+    "w": 541,
+    "h": 73,
+    "box": [
+     0.04274,
+     0.04711,
+     0.17796,
+     0.07956
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s21.jpg",
+    "w": 1600,
+    "h": 810,
+    "box": [
+     0.04349,
+     0.09956,
+     1.0,
+     0.96089
+    ]
+   },
+   "videos": [
+    {
+     "src": "assets/video/v22.mp4",
+     "x": 0.04537,
+     "y": 0.1852,
+     "w": 0.43661,
+     "h": 0.7762,
+     "ar": 1.0
+    },
+    {
+     "src": "assets/video/v21.mp4",
+     "x": 0.52065,
+     "y": 0.1852,
+     "w": 0.43661,
+     "h": 0.7762,
+     "ar": 1.0
+    }
+   ],
+   "section": "02 / 3D \u00b7 CGI & GenAI Social Ads"
+  },
+  {
+   "n": 22,
+   "kind": "featured",
+   "bg": "#e3ebee",
+   "label": "Other Featured Projects",
+   "full": {
+    "src": "assets/img/full/s22.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "cap": {
+    "src": "assets/img/cap/s22.png",
+    "w": 1100,
+    "h": 113,
+    "box": [
+     0.05224,
+     0.11778,
+     0.74181,
+     0.24356
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s22.jpg",
+    "w": 1600,
+    "h": 539,
+    "box": [
+     0.04974,
+     0.26178,
+     1.0,
+     0.83111
+    ]
+   },
+   "section": "02 / 3D \u00b7 CGI & GenAI Social Ads"
+  },
+  {
+   "n": 23,
+   "kind": "video",
+   "bg": "#e4ecef",
+   "label": "Costco Co-Branding",
+   "full": {
+    "src": "assets/img/full/s23.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "cap": {
+    "src": "assets/img/cap/s23.png",
+    "w": 1100,
+    "h": 49,
+    "box": [
+     0.12022,
+     0.04756,
+     0.87803,
+     0.10756
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s23.jpg",
+    "w": 1600,
+    "h": 738,
+    "box": [
+     0.02474,
+     0.18622,
+     1.0,
+     0.98578
+    ]
+   },
+   "videos": [
+    {
+     "src": "assets/video/v23.mp4",
+     "x": 0.02441,
+     "y": 0.18579,
+     "w": 0.15032,
+     "h": 0.47507,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v24.mp4",
+     "x": 0.1821,
+     "y": 0.18579,
+     "w": 0.15032,
+     "h": 0.47507,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v25.mp4",
+     "x": 0.34002,
+     "y": 0.18579,
+     "w": 0.15032,
+     "h": 0.47507,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v26.mp4",
+     "x": 0.49782,
+     "y": 0.18579,
+     "w": 0.15032,
+     "h": 0.47507,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v28.mp4",
+     "x": 0.65685,
+     "y": 0.18579,
+     "w": 0.15032,
+     "h": 0.47507,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v31.mp4",
+     "x": 0.81479,
+     "y": 0.18579,
+     "w": 0.15032,
+     "h": 0.47507,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v27.mp4",
+     "x": 0.02441,
+     "y": 0.67822,
+     "w": 0.30801,
+     "h": 0.30801,
+     "ar": 1.7778
+    },
+    {
+     "src": "assets/video/v29.mp4",
+     "x": 0.34002,
+     "y": 0.67822,
+     "w": 0.30801,
+     "h": 0.30801,
+     "ar": 1.7778
+    },
+    {
+     "src": "assets/video/v30.mp4",
+     "x": 0.65685,
+     "y": 0.67822,
+     "w": 0.30801,
+     "h": 0.30801,
+     "ar": 1.7778
+    }
+   ],
+   "section": "02 / 3D \u00b7 CGI & GenAI Social Ads"
+  },
+  {
+   "n": 24,
+   "kind": "video",
+   "bg": "#e4ecef",
+   "label": "Secret vs Competitor Products",
+   "full": {
+    "src": "assets/img/full/s24.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "cap": {
+    "src": "assets/img/cap/s24.png",
+    "w": 1100,
+    "h": 57,
+    "box": [
+     0.14946,
+     0.048,
+     0.84854,
+     0.112
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s24.jpg",
+    "w": 1600,
+    "h": 682,
+    "box": [
+     0.0105,
+     0.232,
+     1.0,
+     0.98222
+    ]
+   },
+   "videos": [
+    {
+     "src": "assets/video/v32.mp4",
+     "x": 0.01023,
+     "y": 0.23145,
+     "w": 0.23772,
+     "h": 0.75131,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v34.mp4",
+     "x": 0.25745,
+     "y": 0.23145,
+     "w": 0.23772,
+     "h": 0.75131,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v33.mp4",
+     "x": 0.50468,
+     "y": 0.2315,
+     "w": 0.2377,
+     "h": 0.75126,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v35.mp4",
+     "x": 0.75205,
+     "y": 0.23145,
+     "w": 0.23772,
+     "h": 0.75131,
+     "ar": 0.5625
+    }
+   ],
+   "section": "02 / 3D \u00b7 CGI & GenAI Social Ads"
+  },
+  {
+   "n": 25,
+   "kind": "video",
+   "bg": "#e4ecef",
+   "label": "Secret vs Competitor Products",
+   "full": {
+    "src": "assets/img/full/s25.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "cap": {
+    "src": "assets/img/cap/s25.png",
+    "w": 1100,
+    "h": 57,
+    "box": [
+     0.14946,
+     0.048,
+     0.84854,
+     0.112
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s25.jpg",
+    "w": 1600,
+    "h": 682,
+    "box": [
+     0.0105,
+     0.232,
+     1.0,
+     0.98222
+    ]
+   },
+   "videos": [
+    {
+     "src": "assets/video/v39.mp4",
+     "x": 0.01022,
+     "y": 0.23145,
+     "w": 0.23772,
+     "h": 0.75131,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v38.mp4",
+     "x": 0.25726,
+     "y": 0.23145,
+     "w": 0.2377,
+     "h": 0.75126,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v37.mp4",
+     "x": 0.50504,
+     "y": 0.23145,
+     "w": 0.23735,
+     "h": 0.75014,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v36.mp4",
+     "x": 0.75205,
+     "y": 0.23145,
+     "w": 0.23772,
+     "h": 0.75131,
+     "ar": 0.5625
+    }
+   ],
+   "section": "02 / 3D \u00b7 CGI & GenAI Social Ads"
+  },
+  {
+   "n": 26,
+   "kind": "video",
+   "bg": "#e4ecef",
+   "label": "Secret AMJ",
+   "full": {
+    "src": "assets/img/full/s26.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "cap": {
+    "src": "assets/img/cap/s26.png",
+    "w": 1100,
+    "h": 57,
+    "box": [
+     0.14946,
+     0.048,
+     0.84854,
+     0.112
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s26.jpg",
+    "w": 1600,
+    "h": 684,
+    "box": [
+     0.0105,
+     0.23067,
+     1.0,
+     0.98311
+    ]
+   },
+   "videos": [
+    {
+     "src": "assets/video/v43.mp4",
+     "x": 0.01022,
+     "y": 0.2325,
+     "w": 0.23772,
+     "h": 0.75131,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v42.mp4",
+     "x": 0.25724,
+     "y": 0.23027,
+     "w": 0.23772,
+     "h": 0.75131,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v41.mp4",
+     "x": 0.50504,
+     "y": 0.2325,
+     "w": 0.23772,
+     "h": 0.75131,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v40.mp4",
+     "x": 0.75283,
+     "y": 0.23145,
+     "w": 0.23772,
+     "h": 0.75131,
+     "ar": 0.5625
+    }
+   ],
+   "section": "02 / 3D \u00b7 CGI & GenAI Social Ads"
+  },
+  {
+   "n": 27,
+   "kind": "divider",
+   "bg": "#f3eef4",
+   "label": "03 / CGI \u00b7 AI Scenes + Environments",
+   "full": {
+    "src": "assets/img/full/s27.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "copy": {
+    "src": "assets/img/copy/s27.png",
+    "w": 753,
+    "h": 730,
+    "box": [
+     0.07223,
+     0.26533,
+     0.26043,
+     0.58978
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s27.jpg",
+    "w": 1600,
+    "h": 864,
+    "box": [
+     0.31467,
+     0.17067,
+     1.0,
+     0.82889
+    ]
+   },
+   "section": "03 / CGI \u00b7 AI Scenes + Environments"
+  },
+  {
+   "n": 28,
+   "kind": "twocol",
+   "bg": "#f3eef4",
+   "label": "Venus Shave Assets Refresh",
+   "full": {
+    "src": "assets/img/full/s28.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "copy": {
+    "src": "assets/img/copy/s28.png",
+    "w": 852,
+    "h": 1315,
+    "box": [
+     0.04199,
+     0.04356,
+     0.25494,
+     0.628
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s28.jpg",
+    "w": 1600,
+    "h": 971,
+    "box": [
+     0.29693,
+     0.15467,
+     1.0,
+     0.91333
+    ]
+   },
+   "section": "03 / CGI \u00b7 AI Scenes + Environments"
+  },
+  {
+   "n": 29,
+   "kind": "twocol",
+   "bg": "#f3eef4",
+   "label": "Define Strategy",
+   "full": {
+    "src": "assets/img/full/s29.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "copy": {
+    "src": "assets/img/copy/s29.png",
+    "w": 812,
+    "h": 1385,
+    "box": [
+     0.04274,
+     0.04356,
+     0.24569,
+     0.65911
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s29.jpg",
+    "w": 1600,
+    "h": 1155,
+    "box": [
+     0.32467,
+     0.09822,
+     1.0,
+     0.96533
+    ]
+   },
+   "section": "03 / CGI \u00b7 AI Scenes + Environments"
+  },
+  {
+   "n": 30,
+   "kind": "capart",
+   "bg": "#f3eef4",
+   "label": "Design and Deliver",
+   "full": {
+    "src": "assets/img/full/s30.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "cap": {
+    "src": "assets/img/cap/s30.png",
+    "w": 539,
+    "h": 73,
+    "box": [
+     0.04274,
+     0.04711,
+     0.17746,
+     0.07956
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s30.jpg",
+    "w": 1600,
+    "h": 819,
+    "box": [
+     0.03424,
+     0.09956,
+     1.0,
+     0.97867
+    ]
+   },
+   "section": "03 / CGI \u00b7 AI Scenes + Environments"
+  },
+  {
+   "n": 31,
+   "kind": "capart",
+   "bg": "#f3eef4",
+   "label": "Design and Deliver",
+   "full": {
+    "src": "assets/img/full/s31.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "cap": {
+    "src": "assets/img/cap/s31.png",
+    "w": 539,
+    "h": 73,
+    "box": [
+     0.04274,
+     0.04711,
+     0.17746,
+     0.07956
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s31.jpg",
+    "w": 1600,
+    "h": 819,
+    "box": [
+     0.03424,
+     0.09956,
+     1.0,
+     0.97867
+    ]
+   },
+   "section": "03 / CGI \u00b7 AI Scenes + Environments"
+  },
+  {
+   "n": 32,
+   "kind": "featured",
+   "bg": "#f3eef4",
+   "label": "Other Featured Projects",
+   "full": {
+    "src": "assets/img/full/s32.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "cap": {
+    "src": "assets/img/cap/s32.png",
+    "w": 1100,
+    "h": 113,
+    "box": [
+     0.05224,
+     0.11778,
+     0.74181,
+     0.24356
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s32.jpg",
+    "w": 1600,
+    "h": 489,
+    "box": [
+     0.01775,
+     0.26178,
+     1.0,
+     0.796
+    ]
+   },
+   "section": "03 / CGI \u00b7 AI Scenes + Environments"
+  },
+  {
+   "n": 33,
+   "kind": "video",
+   "bg": "#f4edf5",
+   "label": "Olay Assets",
+   "full": {
+    "src": "assets/img/full/s33.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "art": {
+    "src": "assets/img/art/s33.jpg",
+    "w": 1600,
+    "h": 920,
+    "box": [
+     0.07198,
+     0.02622,
+     1.0,
+     0.97467
+    ]
+   },
+   "videos": [
+    {
+     "src": "assets/video/v46.mp4",
+     "x": 0.07182,
+     "y": 0.02596,
+     "w": 0.17319,
+     "h": 0.53926,
+     "ar": 0.571
+    },
+    {
+     "src": "assets/video/v45.mp4",
+     "x": 0.24277,
+     "y": 0.02596,
+     "w": 0.17066,
+     "h": 0.53937,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v47.mp4",
+     "x": 0.41343,
+     "y": 0.02596,
+     "w": 0.16997,
+     "h": 0.53718,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v48.mp4",
+     "x": 0.58313,
+     "y": 0.02863,
+     "w": 0.17063,
+     "h": 0.53926,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v49.mp4",
+     "x": 0.75131,
+     "y": 0.02596,
+     "w": 0.17063,
+     "h": 0.53926,
+     "ar": 0.5625
+    },
+    {
+     "src": "assets/video/v44.mp4",
+     "x": 0.41522,
+     "y": 0.56312,
+     "w": 0.17282,
+     "h": 0.41092,
+     "ar": 0.7477
+    },
+    {
+     "src": "assets/video/v52.mp4",
+     "x": 0.58134,
+     "y": 0.56314,
+     "w": 0.17245,
+     "h": 0.41003,
+     "ar": 0.7477
+    },
+    {
+     "src": "assets/video/v50.mp4",
+     "x": 0.07182,
+     "y": 0.56522,
+     "w": 0.17245,
+     "h": 0.41003,
+     "ar": 0.7477
+    },
+    {
+     "src": "assets/video/v51.mp4",
+     "x": 0.24277,
+     "y": 0.56522,
+     "w": 0.17194,
+     "h": 0.40881,
+     "ar": 0.7477
+    },
+    {
+     "src": "assets/video/v53.mp4",
+     "x": 0.74952,
+     "y": 0.56522,
+     "w": 0.17282,
+     "h": 0.41003,
+     "ar": 0.7493
+    }
+   ],
+   "section": "03 / CGI \u00b7 AI Scenes + Environments"
+  },
+  {
+   "n": 34,
+   "kind": "capart",
+   "bg": "#f4edf5",
+   "label": "Olay Body Wash",
+   "full": {
+    "src": "assets/img/full/s34.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "art": {
+    "src": "assets/img/art/s34.jpg",
+    "w": 1600,
+    "h": 871,
+    "box": [
+     0.016,
+     0.02311,
+     1.0,
+     0.97556
+    ]
+   },
+   "section": "03 / CGI \u00b7 AI Scenes + Environments"
+  },
+  {
+   "n": 35,
+   "kind": "capart",
+   "bg": "#f4edf5",
+   "label": "Old Spice Men's Cologne",
+   "full": {
+    "src": "assets/img/full/s35.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "art": {
+    "src": "assets/img/art/s35.jpg",
+    "w": 1600,
+    "h": 900,
+    "box": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   },
+   "section": "03 / CGI \u00b7 AI Scenes + Environments"
+  },
+  {
+   "n": 36,
+   "kind": "capart",
+   "bg": "#f4edf5",
+   "label": "Ivory Bodywash Composites",
+   "full": {
+    "src": "assets/img/full/s36.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "cap": {
+    "src": "assets/img/cap/s36.png",
+    "w": 1100,
+    "h": 96,
+    "box": [
+     0.30917,
+     0.04844,
+     0.69033,
+     0.10756
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s36.jpg",
+    "w": 1600,
+    "h": 787,
+    "box": [
+     0.011,
+     0.12133,
+     1.0,
+     0.98667
+    ]
+   },
+   "section": "03 / CGI \u00b7 AI Scenes + Environments"
+  },
+  {
+   "n": 37,
+   "kind": "capart",
+   "bg": "#f4edf5",
+   "label": "Ivory Bodywash Banners",
+   "full": {
+    "src": "assets/img/full/s37.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "cap": {
+    "src": "assets/img/cap/s37.png",
+    "w": 1100,
+    "h": 88,
+    "box": [
+     0.29268,
+     0.04889,
+     0.70682,
+     0.10756
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s37.jpg",
+    "w": 1600,
+    "h": 555,
+    "box": [
+     0.00575,
+     0.18356,
+     1.0,
+     0.79644
+    ]
+   },
+   "section": "03 / CGI \u00b7 AI Scenes + Environments"
+  },
+  {
+   "n": 38,
+   "kind": "divider",
+   "bg": "#e6e6e6",
+   "label": "04 / Display Banner Ads",
+   "full": {
+    "src": "assets/img/full/s38.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "copy": {
+    "src": "assets/img/copy/s38.png",
+    "w": 762,
+    "h": 730,
+    "box": [
+     0.07198,
+     0.26533,
+     0.26243,
+     0.58978
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s38.jpg",
+    "w": 1600,
+    "h": 864,
+    "box": [
+     0.31467,
+     0.17067,
+     1.0,
+     0.82889
+    ]
+   },
+   "section": "04 / Display Banner Ads"
+  },
+  {
+   "n": 39,
+   "kind": "capart",
+   "bg": "#e6e6e6",
+   "label": "Display Banner Ads",
+   "full": {
+    "src": "assets/img/full/s39.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "art": {
+    "src": "assets/img/art/s39.jpg",
+    "w": 1600,
+    "h": 878,
+    "box": [
+     0.017,
+     0.02578,
+     1.0,
+     0.98533
+    ]
+   },
+   "section": "04 / Display Banner Ads"
+  },
+  {
+   "n": 40,
+   "kind": "divider",
+   "bg": "#fff9e9",
+   "label": "05 / Sponsored Brand Videos",
+   "full": {
+    "src": "assets/img/full/s40.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "copy": {
+    "src": "assets/img/copy/s40.png",
+    "w": 757,
+    "h": 730,
+    "box": [
+     0.07198,
+     0.26533,
+     0.26118,
+     0.58978
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s40.jpg",
+    "w": 1600,
+    "h": 865,
+    "box": [
+     0.31467,
+     0.17067,
+     1.0,
+     0.82933
+    ]
+   },
+   "section": "05 / Sponsored Brand Videos"
+  },
+  {
+   "n": 41,
+   "kind": "twocol",
+   "bg": "#fff9e9",
+   "label": "Always Period Underwear Product Video",
+   "full": {
+    "src": "assets/img/full/s41.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "copy": {
+    "src": "assets/img/copy/s41.png",
+    "w": 1100,
+    "h": 1410,
+    "box": [
+     0.04199,
+     0.04356,
+     0.35641,
+     0.76044
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s41.jpg",
+    "w": 1600,
+    "h": 1469,
+    "box": [
+     0.51012,
+     0.05733,
+     1.0,
+     0.85733
+    ]
+   },
+   "section": "05 / Sponsored Brand Videos"
+  },
+  {
+   "n": 42,
+   "kind": "twocol",
+   "bg": "#fff9e9",
+   "label": "Execution Strategy",
+   "full": {
+    "src": "assets/img/full/s42.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "copy": {
+    "src": "assets/img/copy/s42.png",
+    "w": 931,
+    "h": 1626,
+    "box": [
+     0.04249,
+     0.04356,
+     0.27518,
+     0.76622
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s42.jpg",
+    "w": 1600,
+    "h": 1095,
+    "box": [
+     0.37866,
+     0.09822,
+     1.0,
+     0.85422
+    ]
+   },
+   "section": "05 / Sponsored Brand Videos"
+  },
+  {
+   "n": 43,
+   "kind": "video",
+   "bg": "#fff9e9",
+   "label": "Design and Deliver",
+   "full": {
+    "src": "assets/img/full/s43.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "cap": {
+    "src": "assets/img/cap/s43.png",
+    "w": 541,
+    "h": 75,
+    "box": [
+     0.04224,
+     0.04667,
+     0.17746,
+     0.08
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s43.jpg",
+    "w": 1600,
+    "h": 818,
+    "box": [
+     0.03774,
+     0.09911,
+     1.0,
+     0.97378
+    ]
+   },
+   "videos": [
+    {
+     "src": "assets/video/v54.mp4",
+     "x": 0.03754,
+     "y": 0.17337,
+     "w": 0.80096,
+     "h": 0.80096,
+     "ar": 1.7778
+    }
+   ],
+   "section": "05 / Sponsored Brand Videos"
+  },
+  {
+   "n": 44,
+   "kind": "featured",
+   "bg": "#fff9e9",
+   "label": "Other Featured Projects",
+   "full": {
+    "src": "assets/img/full/s44.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "cap": {
+    "src": "assets/img/cap/s44.png",
+    "w": 1100,
+    "h": 115,
+    "box": [
+     0.05174,
+     0.11644,
+     0.74206,
+     0.24444
+    ]
+   },
+   "art": {
+    "src": "assets/img/art/s44.jpg",
+    "w": 1600,
+    "h": 501,
+    "box": [
+     0.04924,
+     0.26044,
+     1.0,
+     0.78978
+    ]
+   },
+   "section": "05 / Sponsored Brand Videos"
+  },
+  {
+   "n": 45,
+   "kind": "video",
+   "bg": "#fff9ea",
+   "label": "Always",
+   "full": {
+    "src": "assets/img/full/s45.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "art": {
+    "src": "assets/img/art/s45.jpg",
+    "w": 1600,
+    "h": 814,
+    "box": [
+     0.08723,
+     0.08756,
+     1.0,
+     0.91289
+    ]
+   },
+   "videos": [
+    {
+     "src": "assets/video/v55.mp4",
+     "x": 0.08691,
+     "y": 0.08724,
+     "w": 0.82645,
+     "h": 0.82645,
+     "ar": 1.7778
+    }
+   ],
+   "section": "05 / Sponsored Brand Videos"
+  },
+  {
+   "n": 46,
+   "kind": "video",
+   "bg": "#fff9ea",
+   "label": "Always",
+   "full": {
+    "src": "assets/img/full/s46.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "art": {
+    "src": "assets/img/art/s46.jpg",
+    "w": 1600,
+    "h": 806,
+    "box": [
+     0.09423,
+     0.09422,
+     1.0,
+     0.90533
+    ]
+   },
+   "videos": [
+    {
+     "src": "assets/video/v56.mp4",
+     "x": 0.09383,
+     "y": 0.09383,
+     "w": 0.81235,
+     "h": 0.81235,
+     "ar": 1.7778
+    }
+   ],
+   "section": "05 / Sponsored Brand Videos"
+  },
+  {
+   "n": 47,
+   "kind": "video",
+   "bg": "#ffffff",
+   "label": "Always",
+   "full": {
+    "src": "assets/img/full/s47.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "art": {
+    "src": "assets/img/art/s47.jpg",
+    "w": 1600,
+    "h": 900,
+    "box": [
+     0.09423,
+     0.09422,
+     0.90552,
+     0.90533
+    ]
+   },
+   "videos": [
+    {
+     "src": "assets/video/v57.mp4",
+     "x": 0.09383,
+     "y": 0.09383,
+     "w": 0.81235,
+     "h": 0.81235,
+     "ar": 1.7778
+    }
+   ],
+   "section": "05 / Sponsored Brand Videos"
+  },
+  {
+   "n": 48,
+   "kind": "closer",
+   "bg": "#00b0f0",
+   "label": "Brand Assets Turnaround Times",
+   "full": {
+    "src": "assets/img/full/s48.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "section": "Global Image Factory"
+  },
+  {
+   "n": 49,
+   "kind": "closer",
+   "bg": "#00b0f0",
+   "label": "Thank You",
+   "full": {
+    "src": "assets/img/full/s49.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "section": "Global Image Factory"
+  },
+  {
+   "n": 50,
+   "kind": "closer",
+   "bg": "#00b0f0",
+   "label": "Contact",
+   "full": {
+    "src": "assets/img/full/s50.jpg",
+    "w": 2400,
+    "h": 1350
+   },
+   "section": "Global Image Factory"
+  }
+ ]
+};
+
+</script>
+<script>
+/* P&G Digital First — deck renderer
+   Builds every screen from assets/slides.json. Mobile reflows; desktop
+   restores the original 16:9 canvas. Live text is used wherever the
+   source PPTX actually carried text; everything else is a high-res crop
+   lifted off the 4000px render. */
+
+const LIVE = {
+  1: {
+    title: "CREATIVE DECK",
+    sub: "Q1 2025 - Q3 2026"
+  },
+  48: {
+    h: "Brand assets turnaround times*",
+    rows: [
+      ["SBV Sponsored Brand Videos", "7 Days", "(excluding shoot days for 1 master)"],
+      ["Omnichannel Meta Videos", "3 Days", "(for a set of 25 short videos)"],
+      ["3D/CGI & GenAI Social Ads", "10 Days", "(for a set of 30 short videos)"],
+      ["CGI Scene Environments", "5 Days", "(for a set of 10 stills at multiple angles)"]
+    ],
+    note: "*Assets turnaround times listed for initial Round 1 submissions only. " +
+          "Total project time (Day 0 to Final handoff varies based on number of internal " +
+          "rounds of feedback/reviews or any changes in the brief or specifications"
+  },
+  49: {
+    h: "Thank you to our key stakeholders across P&G brands",
+    names: ["Chris Talbott","Adam Tillman","Sophia Bazo","Heather GlennGunnarson",
+      "Gracie Harrison","Jack Devine","Logan Meeker","Stephanie Wong","Riley Khan",
+      "Mollie Griesedieck","Genna Hartung","Drake Stimson","Dane Wood","Leon Bao",
+      "Lara Tiller","Juliet Louw","Signe Luebbers","Damilola Oyebanjo","Aanchal Srivastava",
+      "Rigbe Zemicael","Lauren Riley","Lindsey Profitt","Katharine Bakes","Theresa Bloemker",
+      "Samuel Juszczyk","Daniel Li","Gunjan Bahri","Julia Mastrandrea","Marta Lopez Silva",
+      "Jessica Newman"]
+  },
+  50: {
+    blocks: [
+      ["For business queries", "sean@globalimagefactory.com", "(305) 927 0049", "+13059270049"],
+      ["For creative projects", "rajit@globalimagefactory.com", "(786) 820 6121", "+17868206121"]
+    ]
+  }
+};
+
+const HERO = {
+  eyebrowL: "Digital Creds Presentation",
+  eyebrowR: "Q1 2025 TO Q3 2026",
+  title: "Brands Showcase",
+  sub: ["COHO Skin, Personal Care and Beauty,", "Feminine Care, Grooming"]
+};
+
+const el = (tag, cls, txt) => {
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (txt != null) n.textContent = txt;
+  return n;
+};
+const img = (src, cls, w, h, alt) => {
+  const n = el("img", cls);
+  n.src = src; n.alt = alt || "";
+  if (w) n.width = w;
+  if (h) n.height = h;
+  n.loading = "lazy"; n.decoding = "async";
+  return n;
+};
+const isDark = hex => {
+  const c = hex.replace("#", "");
+  const r = parseInt(c.slice(0,2),16), g = parseInt(c.slice(2,4),16), b = parseInt(c.slice(4,6),16);
+  return (0.2126*r + 0.7152*g + 0.0722*b) < 168;
+};
+
+function chrome(s, total) {
+  const c = el("div", "chrome");
+  c.append(el("div", "eyebrow", s.section || s.label));
+  const m = img("assets/img/logo.png", "mark", 278, 102, "Global Image Factory");
+  m.loading = "eager";
+  c.append(m);
+  return c;
+}
+function foot(s, total) {
+  const f = el("div", "foot");
+  const bar = el("div", "bar"); const i = el("i");
+  i.style.width = (s.n / total * 100).toFixed(2) + "%";
+  bar.append(i);
+  f.append(bar, el("div", "num", String(s.n).padStart(2,"0") + " / " + total));
+  return f;
+}
+
+/* ---------- desktop canvas: the original 16:9 plate + positioned video ---------- */
+function canvasPlate(s) {
+  const cv = el("div", "canvas d-only");
+  cv.append(img(s.full.src, "plate", s.full.w, s.full.h, s.label));
+  (s.videos || []).forEach(v => {
+    const vd = document.createElement("video");
+    vd.className = "pos"; vd.src = v.src;
+    vd.muted = true; vd.loop = true; vd.playsInline = true;
+    vd.setAttribute("muted",""); vd.setAttribute("playsinline",""); vd.preload = "none";
+    vd.style.left = (v.x*100).toFixed(3) + "%";
+    vd.style.top = (v.y*100).toFixed(3) + "%";
+    vd.style.width = (v.w*100).toFixed(3) + "%";
+    vd.style.height = (v.h*100).toFixed(3) + "%";
+    cv.append(vd);
+  });
+  return cv;
+}
+
+/* ---------- video host: one <video> per clip, two layouts ----------
+   Each cell carries both its mobile aspect ratio and its desktop position, and
+   CSS picks which to honour. A single element per clip means a single payload
+   per clip once the deck is inlined. */
+function videoHost(s) {
+  const vids = s.videos || [];
+  const portrait = vids.filter(v => v.ar < 0.85).length;
+  let cols = 2;
+  if (vids.length <= 2 && portrait === 0) cols = 1;
+  if (portrait >= 10) cols = 2;
+  const g = el("div", "vhost");
+  g.style.setProperty("--cols", cols);
+  // the desktop plate sits behind the clips; hidden at the mobile breakpoint
+  g.append(img(s.full.src, "plate d-only", s.full.w, s.full.h, s.label));
+  vids.forEach(v => {
+    const cell = el("div", "vcell" + (cols === 2 && v.ar >= 1.25 ? " wide" : ""));
+    cell.style.setProperty("--ar", v.ar);
+    cell.style.setProperty("--x", (v.x * 100).toFixed(3) + "%");
+    cell.style.setProperty("--y", (v.y * 100).toFixed(3) + "%");
+    cell.style.setProperty("--w", (v.w * 100).toFixed(3) + "%");
+    cell.style.setProperty("--h", (v.h * 100).toFixed(3) + "%");
+    const vd = document.createElement("video");
+    vd.src = v.src; vd.muted = true; vd.loop = true; vd.playsInline = true;
+    vd.setAttribute("muted",""); vd.setAttribute("playsinline","");
+    vd.preload = "none";
+    cell.append(vd); g.append(cell);
+  });
+  return g;
+}
+
+/* ---------- live-text bodies ---------- */
+function liveBody(s) {
+  const wrap = el("div", "inner");
+  if (s.n === 1) {
+    wrap.append(el("h1", "cover-title", LIVE[1].title));
+    wrap.append(el("p", "cover-sub", LIVE[1].sub));
+  }
+  if (s.n === 48) {
+    wrap.append(el("h2", "closer-h", LIVE[48].h));
+    const ul = el("ul", "turnaround");
+    LIVE[48].rows.forEach(([k, d, q]) => {
+      const li = el("li");
+      li.append(el("div", "ta-k", k));
+      const v = el("div", "ta-v");
+      const b = el("b", null, d); v.append(b, " ", el("span", null, q));
+      li.append(v); ul.append(li);
+    });
+    wrap.append(ul, el("p", "footnote", LIVE[48].note));
+  }
+  if (s.n === 49) {
+    wrap.append(el("h2", "closer-h", LIVE[49].h));
+    const ul = el("ul", "names");
+    LIVE[49].names.forEach(n => ul.append(el("li", null, n)));
+    wrap.append(ul);
+  }
+  if (s.n === 50) {
+    const m = img("assets/img/logo.png", "closer-mark", 278, 102, "Global Image Factory");
+    m.loading = "eager";
+    wrap.append(m);
+    const c = el("div", "contact");
+    LIVE[50].blocks.forEach(([lab, mail, tel, telHref]) => {
+      const b = el("div", "blk");
+      b.append(el("div", "lab", lab));
+      const a = el("a", null, mail); a.href = "mailto:" + mail;
+      const t = el("a", "tel", tel); t.href = "tel:" + telHref;
+      b.append(a, t); c.append(b);
+    });
+    wrap.append(c);
+  }
+  return wrap;
+}
+
+/* ---------- info slides (3, 4) ---------- */
+function infoBody(s) {
+  const p = s.parts, box = el("div", "parts m-only");
+  if (s.n === 3) {
+    box.append(img(p.title.src, "block", p.title.w, p.title.h, "Projects Summary"));
+    const st = el("div", "stats");
+    p.stats.forEach(x => st.append(img(x.src, null, x.w, x.h)));
+    box.append(st);
+    box.append(img(p.list.src, "block", p.list.w, p.list.h));
+    p.body.forEach(x => box.append(img(x.src, "block", x.w, x.h)));
+  } else {
+    box.append(img(p.title.src, "block", p.title.w, p.title.h, "Approach"));
+    const steps = el("div", "steps");
+    p.steps.forEach((t, i) => {
+      const row = el("div", "step");
+      row.append(img(p.circles[i].src, "circ", p.circles[i].w, p.circles[i].h));
+      row.append(img(t.src, "txt", t.w, t.h));
+      steps.append(row);
+    });
+    box.append(steps);
+  }
+  return box;
+}
+
+/* ---------- hero (slide 2) ---------- */
+function heroBody() {
+  const h = el("div", "hero");
+  // Two plain <img src> crops toggled by the same m-only/d-only switch the rest
+  // of the deck uses. A <picture>/<source srcset> would fetch only one, but
+  // srcset is invisible to media collectors, so the wide crop would go missing.
+  const ALT = "Three women laughing together";
+  const shotM = img("assets/img/hero/photo-portrait.jpg", "shot m-only", 1280, 1600, ALT);
+  const shotD = img("assets/img/hero/photo-wide.jpg", "shot d-only", 2400, 1350, ALT);
+  shotM.loading = "eager"; shotD.loading = "eager";
+  h.append(shotM, shotD);
+
+  const eb = el("div", "h-eyebrow");
+  eb.append(el("span", null, HERO.eyebrowL), el("span", null, HERO.eyebrowR));
+  h.append(eb);
+
+  const lock = el("div", "lockup");
+  lock.append(el("h1", null, HERO.title));
+  const sub = el("p", "h-sub");
+  sub.append(el("span", null, HERO.sub[0]), document.createTextNode(" "),
+             el("span", null, HERO.sub[1]));
+  lock.append(sub, el("div", "h-rule"));
+  const lg = img("assets/img/hero/logos.png", "h-logos", 1400, 119,
+    "Secret, Secret Clinical, Secret Whole Body, Always, Gillette, Olay, Ivory, Old Spice");
+  lg.loading = "eager";
+  lock.append(lg);
+  h.append(lock);
+  return h;
+}
+
+/* ---------- slide assembly ---------- */
+function buildSlide(s, total, idx) {
+  const sec = el("section", "slide k-" + s.kind);
+  sec.style.setProperty("--bg", s.bg);
+  sec.id = "slide-" + (idx != null ? idx : s.n - 1);
+  sec.dataset.n = s.n;
+  sec.dataset.slideName = s.label;
+  sec.setAttribute("aria-label", s.label);
+  if (isDark(s.bg) || s.kind === "hero") sec.classList.add("on-dark");
+
+  if (s.kind === "hero") {
+    sec.append(heroBody());
+    return sec;
+  }
+
+  sec.append(chrome(s, total));
+  const stage = el("div", "stage");
+
+  const live = LIVE[s.n] && (s.kind === "cover" || s.kind === "closer");
+  if (s.videos && s.videos.length) {
+    // one host serves both breakpoints, so no separate desktop plate
+    if (s.cap) stage.append(img(s.cap.src, "cap m-only", s.cap.w, s.cap.h, s.label));
+    stage.append(videoHost(s));
+    sec.append(stage, foot(s, total));
+    if (s.videos.length > 6) sec.classList.add("tall");
+    return sec;
+  }
+
+  if (live) {
+    const body = liveBody(s);
+    const cv = el("div", "canvas live d-only");
+    cv.style.setProperty("--bg", s.bg);
+    cv.append(liveBody(s));
+    stage.append(body, cv);
+    body.classList.add("m-only");
+  } else {
+    if (s.kind === "info") {
+      stage.append(infoBody(s));
+    } else {
+      const m = el("div", "m-only");
+      m.style.cssText = "flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:var(--gap)";
+      if (s.cap) m.append(img(s.cap.src, "cap", s.cap.w, s.cap.h, s.label));
+      if (s.copy) m.append(img(s.copy.src, "copy", s.copy.w, s.copy.h, s.label));
+      if (s.art) {
+        const wide = (s.kind === "capart" || s.kind === "featured") &&
+                     s.art.w / s.art.h >= 1.6;
+        if (wide) {
+          const sc = el("div", "artscroll");
+          sc.append(img(s.art.src, null, s.art.w, s.art.h, s.label));
+          const hint = el("div", "panhint");
+          hint.append(el("span", null, "swipe"), el("span", null, "\u2192"));
+          m.append(sc, hint);
+        } else {
+          m.append(img(s.art.src, "art", s.art.w, s.art.h, s.label));
+        }
+      }
+      else if (s.full) m.append(img(s.full.src, "art", s.full.w, s.full.h, s.label));
+      stage.append(m);
+    }
+    stage.append(canvasPlate(s));
+  }
+
+  sec.append(stage, foot(s, total));
+
+  // dense screens are allowed to run past one viewport rather than crush
+  if (s.kind === "info") sec.classList.add("tall");
+  return sec;
+}
+
+/* ---------- boot ---------- */
+(async function () {
+  const params = new URLSearchParams(location.search);
+  const only = params.get("only");
+
+  // Slide spec is inlined above as window.__SLIDES__.
+  const data = window.__SLIDES__;
+  let slides = data.slides;
+  const total = slides.length;
+  if (only) {
+    const want = only.split(",").map(Number);
+    slides = slides.filter(s => want.includes(s.n));
+  }
+
+  const deck = document.getElementById("deck");
+
+  // index.html ships the 50 slides as static markup so the document is complete
+  // without scripts. Adopt it when present and apply only what the query string
+  // asks for; build from scratch only if the markup is missing.
+  if (!deck.querySelector(".slide")) {
+    const frag = document.createDocumentFragment();
+    slides.forEach((s, i) => frag.append(buildSlide(s, total, i)));
+    deck.append(frag);
+  } else {
+    if (only) {
+      const want = only.split(",").map(Number);
+      deck.querySelectorAll(".slide").forEach(sec => {
+        if (!want.includes(+sec.dataset.n)) sec.remove();
+      });
+    }
+  }
+
+  // play video only while its slide is on screen
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      const vids = e.target.querySelectorAll("video");
+      // Both the mobile grid and the desktop plate live in the DOM so a resize
+      // needs no rebuild — but only the visible set may fetch or play.
+      if (e.isIntersecting) {
+        vids.forEach(v => {
+          if (v.offsetParent === null) return;
+          if (!v.dataset.on) { v.preload = "auto"; v.dataset.on = "1"; }
+          const p = v.play(); if (p && p.catch) p.catch(() => {});
+        });
+      } else {
+        vids.forEach(v => { if (!v.paused) v.pause(); });
+      }
+    });
+  }, { threshold: 0.25 });
+  deck.querySelectorAll(".slide").forEach(s => io.observe(s));
+
+  // keyboard paging
+  addEventListener("keydown", ev => {
+    if (!["ArrowDown","ArrowUp","PageDown","PageUp"," "].includes(ev.key)) return;
+    const back = ev.key === "ArrowUp" || ev.key === "PageUp";
+    const secs = [...deck.querySelectorAll(".slide")];
+    const y = deck.scrollTop;
+    const cur = secs.findIndex(s => s.offsetTop > y + 8);
+    const idx = back ? Math.max(0, cur - 2) : Math.max(0, cur);
+    if (secs[idx]) { deck.scrollTo({ top: secs[idx].offsetTop }); ev.preventDefault(); }
+  });
+})();
+
+</script>
+
+
+</body></html>
