@@ -2961,10 +2961,38 @@ function buildSlide(s, total, idx) {
   // A zero-height band across the viewport's middle means exactly one slide
   // qualifies at a time, whatever its height -- .tall slides included, which a
   // ratio threshold cannot promise since they exceed the viewport.
+  // Chapter ids begin with a digit, so getElementById is required throughout --
+  // querySelector("#01-omnichannel-meta-ads") throws on an invalid selector.
+  const chapters = [...deck.querySelectorAll(".chapter")].map(a => a.id);
+
+  // Which slide, if any, the current fragment names as a chapter -- by exact
+  // slug or by unique prefix. Null for a slide anchor or an unknown fragment.
+  const chapterSlide = () => {
+    const want = decodeURIComponent(location.hash.slice(1));
+    if (!want) return null;
+    const hit = chapters.includes(want)
+      ? want
+      : (chapters.filter(c => c.startsWith(want)).length === 1
+          ? chapters.filter(c => c.startsWith(want))[0]
+          : null);
+    return hit ? document.getElementById(hit).closest(".slide") : null;
+  };
+
+  // A chapter link STAYS in the address bar while the viewer is still on that
+  // chapter's slide, so it can be copied on arrival rather than being replaced
+  // by #slideN within a second. The hold releases the moment any other slide
+  // takes the midline, and position tracking resumes for the rest of the
+  // session. Held per-arrival, so a later chapter link holds again.
+  let holdFor = null;
+
   let shownHash = location.hash;
   const hashIO = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
+      if (holdFor) {
+        if (e.target === holdFor) return;
+        holdFor = null;
+      }
       const h = "#slide" + e.target.dataset.n;
       if (h === shownHash) return;
       shownHash = h;
@@ -2975,21 +3003,21 @@ function buildSlide(s, total, idx) {
 
   // Chapter anchors resolve by unique PREFIX, so #01-omnichannel works as well
   // as the full #01-omnichannel-meta-ads. Exact ids are resolved by the browser
-  // before this ever runs -- it acts only when the fragment matches nothing.
+  // before this ever runs -- the scroll is only needed when nothing matched.
   // The numeric prefix makes an ambiguous match impossible across these five,
-  // but the length check is kept so a future slug collision fails closed rather
-  // than jumping somewhere arbitrary.
-  // NOTE: chapter ids begin with a digit, so getElementById is required --
-  // querySelector("#01-omnichannel-meta-ads") throws on an invalid selector.
-  const chapters = [...deck.querySelectorAll(".chapter")].map(a => a.id);
-  const resolveChapter = () => {
+  // but the single-hit check is kept so a future slug collision fails closed
+  // rather than jumping somewhere arbitrary.
+  const onHash = () => {
     const want = decodeURIComponent(location.hash.slice(1));
-    if (!want || document.getElementById(want)) return;
-    const hit = chapters.filter(c => c.startsWith(want));
-    if (hit.length === 1) document.getElementById(hit[0]).scrollIntoView();
+    if (want && !document.getElementById(want)) {
+      const hit = chapters.filter(c => c.startsWith(want));
+      if (hit.length === 1) document.getElementById(hit[0]).scrollIntoView();
+    }
+    holdFor = chapterSlide();
+    if (holdFor) shownHash = location.hash;
   };
-  addEventListener("hashchange", resolveChapter);
-  resolveChapter();
+  addEventListener("hashchange", onHash);
+  onHash();
 
   // keyboard paging
   addEventListener("keydown", ev => {
