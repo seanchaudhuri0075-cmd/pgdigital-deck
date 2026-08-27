@@ -362,6 +362,29 @@ img,video{display:block;max-width:100%}
 }
 @media (max-width:899px){
   .d-only{display:none !important}
+
+  /* ================================================================ */
+  /* Snap OFF on touch. Ported from hh-creativestrategy, where the same
+     symptom was diagnosed and the fix signed off: proximity snap with
+     scroll-snap-stop:always re-targets every fling and animates on its own
+     curve, behaving identically to mandatory, because snap points sit exactly
+     one viewport apart and proximity has nowhere to rest outside its
+     threshold. Geometry, not the keyword, was doing that. Turning the snap
+     container off is the only thing that returns the browser's own
+     deceleration, because snap re-targeting IS what overrides it. The cost is
+     exact and accepted: slides no longer align, so a flick can rest mid-slide.
+     Desktop keeps proximity snap untouched.
+     scroll-snap-align on .slide is left in place -- it is inert without a snap
+     container, and it still serves desktop from the same rule.
+     scroll-snap-stop below is likewise inert while snap is off; it is kept so
+     that re-enabling snap here restores the correct touch value rather than
+     silently inheriting the desktop `always`.
+     Breakpoint is 899px, not hh's 820px: each deck gates at its OWN mobile
+     boundary. pgdigital switches layout at 900/899, so 820 would leave
+     821-899px in mobile layout -- .m-only visible, all 13 .artscroll
+     carousels live -- while still carrying desktop snap. */
+  .deck{scroll-snap-type:none}
+  .slide{scroll-snap-stop:normal}
 }
 
 @media (prefers-reduced-motion:reduce){
